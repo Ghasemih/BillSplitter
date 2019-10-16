@@ -1,2 +1,2 @@
 # BillSplitter
-Store Application files and source code
+Application files and source code
