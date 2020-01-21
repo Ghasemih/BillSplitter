@@ -6,6 +6,7 @@ import RNTesseractOcr from 'react-native-tesseract-ocr';
 import * as ImagePicker from 'expo-image-picker';
 import Constants from 'expo-constants';
 import * as Permissions from 'expo-permissions';
+import PostList from './posts/screens/PostList';
 
 class HomeScreen extends React.Component {
 
@@ -34,6 +35,11 @@ class HomeScreen extends React.Component {
               name: 'ibrahim',
             }
           )}
+        />
+         <Button
+          title="Go to PostList\"
+          //helps in navigation to different screens
+          onPress={() => this.props.navigation.navigate('Post')}
         />
         <Text style={styles.heading} > BillSplitter Prototype</Text>
         <Text style={styles.text} > This application will help you divide your bill invidiually amongst your people</Text>
@@ -142,6 +148,7 @@ const AppNavigator = createStackNavigator(
   {
     Home: HomeScreen,
     Profile: ProfileScreen,
+    Posts: PostList,
   },
   {
     initialRouteName: 'Home',
