@@ -39,7 +39,7 @@ class HomeScreen extends React.Component {
          <Button
           title="Go to PostList\"
           //helps in navigation to different screens
-          onPress={() => this.props.navigation.navigate('Post')}
+          onPress={() => this.props.navigation.navigate('Posts')}
         />
         <Text style={styles.heading} > BillSplitter Prototype</Text>
         <Text style={styles.text} > This application will help you divide your bill invidiually amongst your people</Text>

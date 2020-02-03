@@ -18,3 +18,7 @@ const posts = [
 export function fetchPosts() {
     postsStore.setPosts(posts);
 }
+
+export async function addPost(post){
+    postsStore.addPost(post);
+}
