@@ -4,14 +4,14 @@ import * as ImagePicker from 'expo-image-picker';
 import Constants from 'expo-constants';
 import * as Permissions from 'expo-permissions';
 
-export default class ProfileScreen extends React.Component {
+export default class AddBillScreen extends React.Component {
 
     state = {
       image: null,
     };
   
     static navigationOptions = {
-      title: 'ProfileScreen\t',
+      title: 'AddBillScreen\t',
     };
   
     //Asks for permissions
@@ -58,8 +58,14 @@ export default class ProfileScreen extends React.Component {
             //helps in navigation to different screens
             onPress={() => this.props.navigation.navigate('Home')}
           />
+
+          <Button
+            title='Go to Bill Screen'
+            //helps in navigation to different screens
+            onPress={() => this.props.navigation.navigate('Bill')}
+          />
   
-          <Text style={styles.heading} > BillSplitter PAGE 2 BABY</Text>
+          <Text style={styles.heading} > AddBillScreen</Text>
           {/* <Text style={styles.text} > This application will help you divide your bill invidiually amongst your people</Text> */}
           <Text style={styles.heading}>{JSON.stringify(navigation.getParam('name','default value'))}</Text>
           <Button
@@ -115,3 +121,10 @@ const styles = StyleSheet.create({
       backgroundColor: '#CDDC39'
     }
   });
+
+//   onPress={() => this.props.navigation.navigate('AddBill',{
+//     total: 10,
+//     name: 'ibrahim',
+//   }
+// )}
+//   

@@ -2,7 +2,12 @@ import React, { Component } from 'react';
 import { TextInput, StyleSheet, Text, View, Button, Image } from 'react-native';
 import { createAppContainer } from 'react-navigation';
 import { createStackNavigator } from 'react-navigation-stack';
-import ProfileScreen from '../PrototypeI/ProfileScreen';
+import AddBillScreen from './screens/AddBillScreen';
+import BillScreen from './screens/BillScreen';
+import AddItemScreen from './screens/AddItemScreen';
+import AddPersonScreen from './screens/AddPersonScreen';
+import SummaryScreen from './screens/SummaryScreen';
+
 
 class HomeScreen extends React.Component {
   constructor(props) {
@@ -28,7 +33,7 @@ class HomeScreen extends React.Component {
           <Button 
             title="Add photo"
             //helps in navigation to different screens
-            onPress={() => this.props.navigation.navigate('Profile',
+            onPress={() => this.props.navigation.navigate('AddBill',
               {
                 total: 10,
                 name: 'ibrahim',
@@ -65,7 +70,11 @@ class HomeScreen extends React.Component {
 const AppNavigator = createStackNavigator(
   {
     Home: HomeScreen,
-    Profile: ProfileScreen,
+    AddBill: AddBillScreen,
+    Bill: BillScreen,
+    AddItem: AddItemScreen,
+    AddPerson: AddPersonScreen,
+    Summary: SummaryScreen
   },
   {
     initialRouteName: 'Home',
