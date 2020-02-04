@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { TextInput, StyleSheet, Text, View, Button, Image } from 'react-native';
 
-export default class BillScreen extends React.Component {
+export default class EditBillScreen extends React.Component {
 
     state = {
         image : null,
@@ -12,45 +12,19 @@ export default class BillScreen extends React.Component {
     // }
 
     static navigationOptions = {
-        title: 'BillScreen\t',
+        title: 'EditBillScreen\t',
     };
 
     render() {
         const {navigation} = this.props;
         return (
             <View style={styles.centeralign}>
-                <Text style={styles.heading}>BillScreen</Text>
+                <Text style={styles.heading}>EditItemScreen</Text>
                 <Button
-                title='Go to AddBillScreen Page'
+                title='Go to BillScreen Page'
                 //helps in navigation to different screens
-                onPress={() => this.props.navigation.navigate('AddBill')}
+                onPress={() => this.props.navigation.navigate('Bill')}
                 />
-
-                <Button
-                title='Go to AddItemScreen Page'
-                //helps in navigation to different screens
-                onPress={() => this.props.navigation.navigate('AddItem')}
-                />
-
-                <Button
-                title='Go to EditItemScreen Page'
-                //helps in navigation to different screens
-                onPress={() => this.props.navigation.navigate('EditItem')}
-                />
-
-                <Button
-                title='Go to AddPersonScreen Page'
-                //helps in navigation to different screens
-                onPress={() => this.props.navigation.navigate('AddPerson')}
-                />
-
-                <Button
-                title='Go to SummaryScreen Page'
-                //helps in navigation to different screens
-                onPress={() => this.props.navigation.navigate('Summary')}
-                />
-
-                
             </View>
         )
     };

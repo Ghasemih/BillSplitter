@@ -2,10 +2,12 @@ import React, { Component } from 'react';
 import { TextInput, StyleSheet, Text, View, Button, Image } from 'react-native';
 import { createAppContainer } from 'react-navigation';
 import { createStackNavigator } from 'react-navigation-stack';
-import AddBillScreen from './screens/AddBillScreen';
 import BillScreen from './screens/BillScreen';
+import AddBillScreen from './screens/AddBillScreen';
 import AddItemScreen from './screens/AddItemScreen';
+import EditItemScreen from './screens/EditItemScreen';
 import AddPersonScreen from './screens/AddPersonScreen';
+import EditPersonScreen from './screens/EditPersonScreen';
 import SummaryScreen from './screens/SummaryScreen';
 
 
@@ -74,7 +76,9 @@ const AppNavigator = createStackNavigator(
     Bill: BillScreen,
     AddItem: AddItemScreen,
     AddPerson: AddPersonScreen,
-    Summary: SummaryScreen
+    Summary: SummaryScreen,
+    EditItem: EditItemScreen,
+    EditPerson : EditPersonScreen
   },
   {
     initialRouteName: 'Home',
