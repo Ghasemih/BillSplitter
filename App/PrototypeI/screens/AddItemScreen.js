@@ -3,21 +3,39 @@ import { TextInput, StyleSheet, Text, View, Button, Image } from 'react-native';
 
 export default class AddItemScreen extends React.Component {
 
-    state = {
-        image : null,
-    };
+    constructor(props){
+      super(props)
+      this.state = {
+          itemName : "",
+          price: 0.0,
+      };
+    }
 
     static navigationOptions = {
-        title: 'AddItemScreen\t',
+        title: "AddItemScreen",
     };
 
     render() {
         const {navigation} = this.props;
         return (
+            
+
             <View style={styles.centeralign}>
                 <Text style={styles.heading}>AddItemScreen</Text>
+                
+                <TextInput
+              style={styles.inputBox}
+              onChangeText={itemName => this.setState({itemName})}
+              placeholder="Enter Item Name" />
+                
+                <TextInput
+              style={styles.inputBox}
+              onChangeText={price => this.setState({price})}
+              placeholder="Enter Item Price" 
+              keyboardType="number-pad"     />    
+                
                 <Button
-                title='Go to BillScreen Page'
+                title="Go to BillScreen Page"
                 //helps in navigation to different screens
                 onPress={() => this.props.navigation.navigate('Bill')}
                 />

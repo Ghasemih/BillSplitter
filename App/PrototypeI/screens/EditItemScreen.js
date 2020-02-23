@@ -3,16 +3,20 @@ import { TextInput, StyleSheet, Text, View, Button, Image } from 'react-native';
 
 export default class EditBillScreen extends React.Component {
 
-    state = {
-        image : null,
-    };
-
+    constructor(props){
+      super(props)
+      const {navigation} = this.props;
+      this.state = {
+        itemName : null,
+      };
+    }
+    
     // componentDidMount(){
 
     // }
 
     static navigationOptions = {
-        title: 'EditBillScreen\t',
+        title: "EditBillScreen\t",
     };
 
     render() {
@@ -20,11 +24,22 @@ export default class EditBillScreen extends React.Component {
         return (
             <View style={styles.centeralign}>
                 <Text style={styles.heading}>EditItemScreen</Text>
+
+                <TextInput
+                  style={styles.inputBox}
+                  onChangeText={itemName => this.setState({itemName})}
+                  placeholder="Edit Item Name" 
+                  value={this.state.itemName}
+                />
+
+
                 <Button
                 title='Go to BillScreen Page'
                 //helps in navigation to different screens
                 onPress={() => this.props.navigation.navigate('Bill')}
                 />
+
+
             </View>
         )
     };

@@ -11,7 +11,7 @@ export default class AddBillScreen extends React.Component {
     };
   
     static navigationOptions = {
-      title: 'AddBillScreen\t',
+      title: "AddBillScreen\t",
     };
   
     //Asks for permissions
@@ -54,13 +54,13 @@ export default class AddBillScreen extends React.Component {
         <View style={styles.centeralign}>
   
           <Button
-            title='Go to Welcome page'
+            title="Go to Welcome page"
             //helps in navigation to different screens
             onPress={() => this.props.navigation.navigate('Home')}
           />
 
           <Button
-            title='Go to Bill Screen'
+            title="Go to Bill Screen"
             //helps in navigation to different screens
             onPress={() => this.props.navigation.navigate('Bill')}
           />

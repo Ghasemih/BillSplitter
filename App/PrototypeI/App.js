@@ -33,7 +33,7 @@ class HomeScreen extends React.Component {
         
         <View style={styles.button}>
           <Button 
-            title="Add photo"
+            title="Add photo\t"
             //helps in navigation to different screens
             onPress={() => this.props.navigation.navigate('AddBill',
               {
@@ -49,7 +49,7 @@ class HomeScreen extends React.Component {
           // onChangeText={text => onChangeTextTotal(text)}
           onChangeText={total => this.setState({ total })}
           // value={this.state.total} 
-          placeholder='Enter Total + Tip'
+          placeholder="Enter Total + Tip"
           keyboardType='number-pad' />
 
         <TextInput
@@ -57,7 +57,7 @@ class HomeScreen extends React.Component {
           // onChangeText={text => onChangeTextPeople(text)}
           onChangeText={people => this.setState({ people })}
           // value={this.state.people} 
-          placeholder='Number of People'
+          placeholder="Number of People"
           keyboardType='number-pad' />
 
         <Text style={styles.heading} >{this.state.total / this.state.people} </Text>

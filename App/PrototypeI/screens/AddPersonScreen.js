@@ -3,9 +3,12 @@ import { TextInput, StyleSheet, Text, View, Button, Image } from 'react-native';
 
 export default class AddPersonScreen extends React.Component {
 
-    state = {
-        image : null,
-    };
+    constructor(props){
+      super(props)
+      this.state = {
+          person : null,
+      };
+    }
 
     // componentDidMount(){
 
@@ -20,11 +23,18 @@ export default class AddPersonScreen extends React.Component {
         return (
             <View style={styles.centeralign}>
                 <Text style={styles.heading}>AddPersonScreen</Text>
+                
+                <TextInput
+              style={styles.inputBox}
+              onChangeText={person => this.setState({person})}
+              placeholder="Enter Person's Name" />
+                
                 <Button
                 title='Go to BillScreen Page'
                 //helps in navigation to different screens
                 onPress={() => this.props.navigation.navigate('Bill')}
                 />
+
             </View>
         )
     };
