@@ -25,7 +25,7 @@ class HomeScreen extends React.Component {
   };
 
   static navigationOptions = {
-    title: 'Welcome\t',
+    title: 'Welcome',
   };
 
   render() {
@@ -84,14 +84,14 @@ const AppNavigator = createStackNavigator(
     Home: HomeScreen,
     AddBill: AddBillScreen,
     Bill: BillScreen,
+    BillOptions : BillOptionsScreen,
+    ManualEntry : ManualEntryScreen,
     AddItem: AddItemScreen,
     AddPerson: AddPersonScreen,
     Summary: SummaryScreen,
     EditItem: EditItemScreen,
     EditPerson : EditPersonScreen,
-    AboutScreen : AboutScreen,
-    BillOptions : BillOptionsScreen,
-    ManualEntry : ManualEntryScreen
+    AboutScreen : AboutScreen
   },
   {
     initialRouteName: 'Home',
