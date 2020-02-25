@@ -11,7 +11,7 @@ export default class AddBillScreen extends React.Component {
     };
   
     static navigationOptions = {
-      title: "AddBillScreen\t",
+      title: "Add a new Bill",
     };
   
     //Asks for permissions
@@ -22,8 +22,10 @@ export default class AddBillScreen extends React.Component {
     //Need permission to access camera roll for ios
     getPermissionAsync = async () => {
       if (Constants.platform.ios) {
-        const {status} = await Permissions.askAsync(Permissions.CAMERA_ROLL);
-        if (status !== 'granted'){
+      const {status} = await Permissions.askAsync(Permissions.CAMERA_ROLL);
+      const {status2} = await Permissions.askAsync(Permissions.CAMERA);
+
+      if (status !== 'granted' || status2 !== 'granted'){
           alert('Sorry, need camera roll permissions');
           console.log('Permission to camera roll not granted');
         }
@@ -45,6 +47,20 @@ export default class AddBillScreen extends React.Component {
       }
     };
   
+
+    _takeImage = async () => {
+      let result = await ImagePicker.launchCameraAsync({
+        mediaTypes: ImagePicker.MediaTypeOptions.All,
+        allowsEditing: true,
+        aspect: [4,3],
+      });
+  
+      console.log(result);
+  
+      if (!result.cancelled){
+        this.setState({image: result.uri});
+      }
+    }
     
     render() {
       // Needed for accessing parameters from previous screen
@@ -53,34 +69,39 @@ export default class AddBillScreen extends React.Component {
       return (
         <View style={styles.centeralign}>
   
+        <Button
+          title="Pick an Image"
+          //helps in navigation to different screens
+          onPress={this._pickImage}
+        />
+        <Button
+          title="Use your Camera"
+          //use camera application
+          onPress={this._takeImage}
+        />
+
+          <View style={styles.ImageContainer}>    
+  {image &&
+       <Image source={{ uri: image }} style={{ width: 250, height: 250}} />}
+  
+
+          <Text>{'\n\n\n\n\n\n\n'}</Text>
+
           <Button
-            title="Go to Welcome page"
+            title="Go to Home page"
             //helps in navigation to different screens
             onPress={() => this.props.navigation.navigate('Home')}
           />
+          <Button
+            title="Go to Bill Options page"
+            //helps in navigation to different screens
+            onPress={() => this.props.navigation.navigate('BillOptions')}
+          />
 
-          <Button
-            title="Go to Bill Screen"
-            //helps in navigation to different screens
-            onPress={() => this.props.navigation.navigate('Bill')}
-          />
-  
-          <Text style={styles.heading} > AddBillScreen</Text>
-          {/* <Text style={styles.text} > This application will help you divide your bill invidiually amongst your people</Text> */}
-          <Text style={styles.heading}>{JSON.stringify(navigation.getParam('name','default value'))}</Text>
-          <Button
-            title="Pick_Image\"
-            //helps in navigation to different screens
-            onPress={this._pickImage}
-          />
-          <View style={styles.ImageContainer}>    
-  {image &&
-    <Image source={{ uri: image }} style={{ width: 250, height: 250}} />}
-  
           </View>
-  
-  
         </View>
+
+  
       );
     }
 }
@@ -124,7 +145,7 @@ const styles = StyleSheet.create({
 
 //   onPress={() => this.props.navigation.navigate('AddBill',{
 //     total: 10,
-//     name: 'ibrahim',
+//     name: '',
 //   }
 // )}
 //   

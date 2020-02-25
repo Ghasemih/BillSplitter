@@ -9,6 +9,9 @@ import EditItemScreen from './screens/EditItemScreen';
 import AddPersonScreen from './screens/AddPersonScreen';
 import EditPersonScreen from './screens/EditPersonScreen';
 import SummaryScreen from './screens/SummaryScreen';
+import AboutScreen from './screens/AboutScreen';
+import BillOptionsScreen from './screens/BillOptionsScreen';
+import ManualEntryScreen from './screens/ManualEntryScreen';
 
 
 class HomeScreen extends React.Component {
@@ -29,11 +32,22 @@ class HomeScreen extends React.Component {
     return (
       <View style={styles.centeralign}>
         <Text style={styles.heading} > BillSplitter </Text>
-        <Text style={styles.text} > Provide the information or add a photo</Text>
+        <Text style={styles.text} > Choose an option to get started!</Text>
         
         <View style={styles.button}>
           <Button 
-            title="Add photo\t"
+            title="Add a Bill"
+            //helps in navigation to different screens
+            onPress={() => this.props.navigation.navigate('BillOptions',
+              {
+                total: 10,
+                name: 'ibrahim',
+              }
+            )}
+          />
+
+          <Button 
+            title="View Previous Bills"
             //helps in navigation to different screens
             onPress={() => this.props.navigation.navigate('AddBill',
               {
@@ -42,26 +56,22 @@ class HomeScreen extends React.Component {
               }
             )}
           />
+
+          
+          <Button 
+            title="About"
+            //helps in navigation to different screens
+            onPress={() => this.props.navigation.navigate('AboutScreen',
+              {
+                total: 10,
+                name: 'ibrahim',
+              }
+            )}
+          />
         </View>
 
-        <TextInput
-          style={styles.inputBox}
-          // onChangeText={text => onChangeTextTotal(text)}
-          onChangeText={total => this.setState({ total })}
-          // value={this.state.total} 
-          placeholder="Enter Total + Tip"
-          keyboardType='number-pad' />
-
-        <TextInput
-          style={styles.inputBox}
-          // onChangeText={text => onChangeTextPeople(text)}
-          onChangeText={people => this.setState({ people })}
-          // value={this.state.people} 
-          placeholder="Number of People"
-          keyboardType='number-pad' />
-
-        <Text style={styles.heading} >{this.state.total / this.state.people} </Text>
       </View>
+
     );
   }
 }
@@ -78,7 +88,10 @@ const AppNavigator = createStackNavigator(
     AddPerson: AddPersonScreen,
     Summary: SummaryScreen,
     EditItem: EditItemScreen,
-    EditPerson : EditPersonScreen
+    EditPerson : EditPersonScreen,
+    AboutScreen : AboutScreen,
+    BillOptions : BillOptionsScreen,
+    ManualEntry : ManualEntryScreen
   },
   {
     initialRouteName: 'Home',
