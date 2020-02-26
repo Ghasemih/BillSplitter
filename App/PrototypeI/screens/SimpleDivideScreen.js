@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { TextInput, StyleSheet, Text, View, Button, Image } from 'react-native';
 
-export default class BillOptionsScreen extends React.Component {
+export default class SimpleDivideScreen extends React.Component {
 
     state = {
         image : null,
@@ -12,54 +12,34 @@ export default class BillOptionsScreen extends React.Component {
     // }
 
     static navigationOptions = {
-        title: 'Bill Options Screen\t',
+        title: 'Simple Division Screen',
     };
 
-  render() {
+render() {
     return (
       <View style={styles.centeralign}>
-        <Text style={styles.text} >Choose your method of input</Text>
+        <TextInput
+          style={styles.inputBox}
+          // onChangeText={text => onChangeTextTotal(text)}
+          onChangeText={total => this.setState({ total })}
+          // value={this.state.total} 
+          placeholder="Enter Total + Tip"
+          keyboardType='number-pad' />
+
+        <Text>{'\n'}</Text>
         
+        <TextInput
+          style={styles.inputBox}
+          // onChangeText={text => onChangeTextPeople(text)}
+          onChangeText={people => this.setState({ people })}
+          // value={this.state.people} 
+          placeholder="Number of People"
+          keyboardType='number-pad' />
+
         <Text>{'\n'}</Text>
 
-        <View style={styles.button}>
-          <Button 
-            title="Take a photo"
-            //helps in navigation to different screens
-            onPress={() => this.props.navigation.navigate('AddBill',
-              {
-                total: 10,
-                name: 'ibrahim',
-              }
-            )}
-          />
-
-          <Button 
-            title="Enter Values Manually"
-            //helps in navigation to different screens
-            onPress={() => this.props.navigation.navigate('BillValues',
-              {
-                total: 10,
-                name: 'ibrahim',
-              }
-            )}
-          />
-
-          <Button 
-            title="Divide Equally"
-            //helps in navigation to different screens
-            onPress={() => this.props.navigation.navigate('SimpleDivide',
-              {
-                total: 10,
-                name: 'ibrahim',
-              }
-            )}
-          />
-
-        </View>
-
+        <Text style={styles.heading} >{this.state.total / this.state.people} </Text>
       </View>
-
     );
   }
 }
