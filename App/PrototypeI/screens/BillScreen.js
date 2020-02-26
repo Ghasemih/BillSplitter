@@ -20,11 +20,6 @@ export default class BillScreen extends React.Component {
         return (
             <View style={styles.centeralign}>
                 <Text style={styles.heading}>BillScreen</Text>
-                <Button
-                title='Go to AddBillScreen Page'
-                //helps in navigation to different screens
-                onPress={() => this.props.navigation.navigate('AddBill')}
-                />
 
                 <Button
                 title='Go to AddItemScreen Page'
