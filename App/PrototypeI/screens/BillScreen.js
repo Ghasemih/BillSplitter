@@ -13,18 +13,18 @@ class BillScreen extends React.Component {
 
     static propTypes = {
       componentId: PropTypes.string,
-      items: PropTypes.array
+      items: PropTypes.array,
+      people: PropTypes.array
     };
     
     componentDidMount(){
       itemsActions.fetchItems();
+      itemsActions.fetchPerson();
     }
 
     static navigationOptions = {
         title: 'BillScreen\t',
     };
-
-
 
     render() {
         const {navigation} = this.props;
@@ -33,7 +33,8 @@ class BillScreen extends React.Component {
                 <Text style={styles.heading}>BillScreen</Text>
 
                 <Text>{JSON.stringify(this.props.items)}</Text>
-              
+
+                <Text>{JSON.stringify(this.props.people)}</Text>
                 <Button
                 title='Go to AddItemScreen Page'
                 //helps in navigation to different screens
@@ -66,7 +67,8 @@ class BillScreen extends React.Component {
 
 function mapStateToItems() {
   return {
-    items: itemsStore.getItems()
+    items: itemsStore.getItems(),
+    people: itemsStore.getPeople(),
   };
 }
 

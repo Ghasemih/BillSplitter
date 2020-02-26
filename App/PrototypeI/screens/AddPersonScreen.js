@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { TextInput, StyleSheet, Text, View, Button, Image } from 'react-native';
+import * as itemsActions from '../items/items.actions';
 
 export default class AddPersonScreen extends React.Component {
 
@@ -32,8 +33,15 @@ export default class AddPersonScreen extends React.Component {
                 <Button
                 title='Go to BillScreen Page'
                 //helps in navigation to different screens
-                onPress={() => this.props.navigation.navigate('Bill')}
-                />
+                onPress={() => {
+                  itemsActions.addPerson({
+                    personName: this.state.person,
+                    selected: false
+                  });
+                  this.props.navigation.navigate('Bill')
+                  }
+                }
+                  />
 
             </View>
         )
