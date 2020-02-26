@@ -1,27 +1,3 @@
-{
-    "items": [{
-            "itemName": "Item 1",
-            "price": 10,
-            "assignedPeople": ["Person A"],
-            "taxValue": 13,
-            "tipValue": 10
-        },
-        {
-            "itemName": "Item 2",
-            "price": 20,
-            "assignedPeople": ["Person A", "Person B"],
-            "taxValue": 13,
-            "tipValue": 10
-        },
-        {
-            "itemName": "Item 3",
-            "price": 30,
-            "assignedPeople": ["Person B"],
-            "taxValue": 13,
-            "tipValue": 10
-        }
-    ]
-}
 import * as remx from 'remx';
 const initialState = {
     items: []
@@ -39,8 +15,12 @@ const getters = remx.getters({
 
 const setters = remx.setters({
 
-    setPosts(items){
+    setItems(items){
         state.items = items;
+    },
+
+    addItem(item){
+        state.items = [...state.items, item];
     }
 
 })

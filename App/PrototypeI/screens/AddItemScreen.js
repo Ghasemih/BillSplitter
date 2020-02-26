@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { TextInput, StyleSheet, Text, View, Button, Image } from 'react-native';
+import * as itemsActions from '../items/items.actions';
 
 export default class AddItemScreen extends React.Component {
 
@@ -19,7 +20,6 @@ export default class AddItemScreen extends React.Component {
         const {navigation} = this.props;
         return (
             
-
             <View style={styles.centeralign}>
                 <Text style={styles.heading}>AddItemScreen</Text>
                 
@@ -37,7 +37,17 @@ export default class AddItemScreen extends React.Component {
                 <Button
                 title="Go to BillScreen Page"
                 //helps in navigation to different screens
-                onPress={() => this.props.navigation.navigate('Bill')}
+                onPress={() => {
+                  itemsActions.addItem({
+                    itemName: this.state.itemName,
+                    price: this.state.price,
+                    assignedPeople: [],
+                    taxValue: 13,
+                    tipValue: 10
+                  });
+                  this.props.navigation.navigate('Bill');
+                  }
+                }
                 />
             </View>
         )

@@ -37,7 +37,7 @@ export default class BillOptionsScreen extends React.Component {
           <Button 
             title="Enter Values Manually"
             //helps in navigation to different screens
-            onPress={() => this.props.navigation.navigate('BillValues',
+            onPress={() => this.props.navigation.navigate('Bill',
               {
                 total: 10,
                 name: 'ibrahim',

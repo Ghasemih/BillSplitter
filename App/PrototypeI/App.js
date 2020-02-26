@@ -11,9 +11,7 @@ import EditPersonScreen from './screens/EditPersonScreen';
 import SummaryScreen from './screens/SummaryScreen';
 import AboutScreen from './screens/AboutScreen';
 import BillOptionsScreen from './screens/BillOptionsScreen';
-import ManualEntryScreen from './screens/ManualEntryScreen';
 import SimpleDivideScreen from './screens/SimpleDivideScreen';
-
 
 class HomeScreen extends React.Component {
   constructor(props) {
@@ -84,9 +82,8 @@ const AppNavigator = createStackNavigator(
   {
     Home: HomeScreen,
     AddBill: AddBillScreen,
-    BillValues: BillScreen,
+    Bill: BillScreen,
     BillOptions : BillOptionsScreen,
-    ManualEntry : ManualEntryScreen,
     AddItem: AddItemScreen,
     AddPerson: AddPersonScreen,
     Summary: SummaryScreen,

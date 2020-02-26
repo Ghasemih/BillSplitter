@@ -1,19 +1,30 @@
 import React, { Component } from 'react';
 import { TextInput, StyleSheet, Text, View, Button, Image } from 'react-native';
+import PropTypes from 'prop-types';
+import {connect} from 'remx';
+import {itemsStore} from '../items/items.store';
+import * as itemsActions from '../items/items.actions';
 
-export default class BillScreen extends React.Component {
+class BillScreen extends React.Component {
 
     state = {
         image : null,
     };
 
-    // componentDidMount(){
-
-    // }
+    static propTypes = {
+      componentId: PropTypes.string,
+      items: PropTypes.array
+    };
+    
+    componentDidMount(){
+      itemsActions.fetchItems();
+    }
 
     static navigationOptions = {
         title: 'BillScreen\t',
     };
+
+
 
     render() {
         const {navigation} = this.props;
@@ -21,6 +32,8 @@ export default class BillScreen extends React.Component {
             <View style={styles.centeralign}>
                 <Text style={styles.heading}>BillScreen</Text>
 
+                <Text>{JSON.stringify(this.props.items)}</Text>
+              
                 <Button
                 title='Go to AddItemScreen Page'
                 //helps in navigation to different screens
@@ -49,8 +62,15 @@ export default class BillScreen extends React.Component {
             </View>
         )
     };
-
 }
+
+function mapStateToItems() {
+  return {
+    items: itemsStore.getItems()
+  };
+}
+
+
 //navigation.getParam('name','default value')
 const styles = StyleSheet.create({
     centeralign: {
@@ -88,6 +108,7 @@ const styles = StyleSheet.create({
     }
   });
 
+export default connect(mapStateToItems)(BillScreen);
 //   onPress={() => this.props.navigation.navigate('AddBill',{
 //     total: 10,
 //     name: 'ibrahim',
