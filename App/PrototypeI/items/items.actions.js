@@ -24,12 +24,32 @@ const items = [
     }
 ];
 
+const people = [
+    {
+    personName: "Person A",
+    selected: false
+    },
+    {
+    personName: "Person B",
+    selected: false
+    }
+];
+
+
 export function fetchItems(){
     itemsStore.setItems(items);    
 }
 
 export function addItem(item){
     itemsStore.addItem(item);
+}
+
+export function fetchPerson(){
+    itemsStore.setPeople(people);
+} 
+
+export function addPerson(person){
+    itemsStore.addPerson(person);
 }
 
 

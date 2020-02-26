@@ -1,6 +1,7 @@
 import * as remx from 'remx';
 const initialState = {
-    items: []
+    items: [],
+    people: []
 };
 
 const state = remx.state(initialState);
@@ -9,6 +10,10 @@ const getters = remx.getters({
 
     getItems() {
         return state.items;
+    },
+
+    getPeople() {
+        return state.people;
     }
 
 });
@@ -21,6 +26,14 @@ const setters = remx.setters({
 
     addItem(item){
         state.items = [...state.items, item];
+    },
+
+    setPeople(people){
+        state.people = people;
+    },
+
+    addPerson(person){
+        state.people = [...state.people,person];
     }
 
 })
