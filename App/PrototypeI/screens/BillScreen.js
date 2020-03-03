@@ -1,11 +1,68 @@
 import React, { Component } from 'react';
-import { TextInput, StyleSheet, Text, View, Button, Image, FlatList, TouchableOpacity} from 'react-native';
+import { TextInput,SafeAreaView, StyleSheet, Text, View, Button, Image, FlatList, TouchableOpacity} from 'react-native';
 import PropTypes from 'prop-types';
 import {connect} from 'remx';
 import {itemsStore} from '../items/items.store';
 import * as itemsActions from '../items/items.actions';
 import { ListItem } from 'react-native-ui-lib';
 import {View as AnimatableView} from 'react-native-animatable';
+import Constants from 'expo-constants';
+
+
+const people = [
+  {
+  personName: "Person A",
+  selected: false
+  },
+  {
+  personName: "Person B",
+  selected: false
+  }
+];
+
+const items = [
+  {
+  id:1,
+  itemName: "Item 1",
+  price: 10,
+  assignedPeople: ["Person A"],
+  taxValue: 13,
+  tipValue: 10
+  },
+  {
+  id:2,
+  itemName: "Item 2",
+  price: 20,
+  assignedPeople: ["Person A", "Person B"],
+  taxValue: 13,
+  tipValue: 10
+  },
+  {
+    id:3,
+    itemName: "Item 4",
+    price: 20,
+    assignedPeople: ["Person A", "Person B"],
+    taxValue: 13,
+    tipValue: 10
+    },
+  {
+  id:4,
+  itemName: "Item 3",
+  price: 30,
+  assignedPeople: ["Person B"],
+  taxValue: 13,
+  tipValue: 10
+  }
+];
+
+function Item({ title }) {
+  return (
+    <View style={styles.item}>
+      <Text style={styles.title}>{title}</Text>
+    </View>
+  );
+}
+
 
 function RenderItem({item}){
   console.log(item);
@@ -28,6 +85,13 @@ function RenderItem({item}){
     // </ListItem>
 }
 
+function mapStateToItems() {
+  return {
+    items: itemsStore.getItems(),
+    people: itemsStore.getPeople(),
+  }
+}
+
 
 class BillScreen extends React.Component {
 
@@ -45,14 +109,12 @@ class BillScreen extends React.Component {
       itemsActions.fetchItems();
       itemsActions.fetchPerson();
       this.setState({renderItems : this.props.items})
-    }
-
-    static navigationOptions = {
-        title: 'BillScreen\t',
     };
 
+    static navigationOptions = {
+        title: 'Bill Screen\t',
+    };
 
-      
 
     FlatListItemSeperator = () => {
       <View style={styles.line}></View>
@@ -60,61 +122,62 @@ class BillScreen extends React.Component {
 
     render() {
         const {navigation} = this.props;
-        return (
-            <View style={styles.centeralign}>
-                <Text style={styles.heading}>BillScreen</Text>
+        return ( 
+          <View style={styles.centeralign}>
+          
+          <Text style={styles.text} >Your bill of items so far</Text>
 
-                <Text>{JSON.stringify(this.props.items)}</Text>
-                <FlatList
-                  data = {this.props.items}
-                  ItemSeparatorComponent = {this.FlatListItemSeperator}
-                  renderItem={({item}) => <RenderItem item={item.itemName} />}
-                  keyExtractor={item => item.itemName}
-                  // extraData={this.state}
-                />
-                
+          <SafeAreaView style={styles.container}>
+          <FlatList
+            data={items}
+            renderItem={({ item }) => <Item title={item.itemName} />}
+            keyExtractor={item => item.id}
+            contentContainerStyle={{ paddingBottom: 0}}
+          />
+           </SafeAreaView>
 
-                <Text>{JSON.stringify(this.props.people)}</Text>
-                <Button
-                title='Go to AddItemScreen Page'
-                //helps in navigation to different screens
-                onPress={() => this.props.navigation.navigate('AddItem')}
-                />
+          <Button
+          title='Go to Add Item Screen Page'
+          //helps in navigation to different screens
+          onPress={() => this.props.navigation.navigate('AddItem')}
+          />
 
-                <Button
-                title='Go to EditItemScreen Page'
-                //helps in navigation to different screens
-                onPress={() => this.props.navigation.navigate('EditItem')}
-                />
+          <Button
+          title='Go to Edit Item Screen Page'
+          //helps in navigation to different screens
+          onPress={() => this.props.navigation.navigate('EditItem')}
+          />
 
-                <Button
-                title='Go to AddPersonScreen Page'
-                //helps in navigation to different screens
-                onPress={() => this.props.navigation.navigate('AddPerson')}
-                />
+          <Button
+          title='Go to Add Person Screen Page'
+          //helps in navigation to different screens
+          onPress={() => this.props.navigation.navigate('AddPerson')}
+          />
 
-                <Button
-                title='Go to SummaryScreen Page'
-                //helps in navigation to different screens
-                onPress={() => this.props.navigation.navigate('Summary')}
-                />
+          <Button
+          title='Go to Summary Screen Page'
+          //helps in navigation to different screens
+          onPress={() => this.props.navigation.navigate('Summary')}
+          />
 
-                
-            </View>
-        )
+          <Text>{'\n\n\n\n\n\n\n\n'}</Text>
+
+          </View>                  
+        );
     };
-}
-
-function mapStateToItems() {
-  return {
-    items: itemsStore.getItems(),
-    people: itemsStore.getPeople(),
-  };
 }
 
 
 //navigation.getParam('name','default value')
 const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    
+    marginTop: Constants.statusBarHeight,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+
     centeralign: {
       flex: 1,
       backgroundColor: '#fff',
@@ -168,3 +231,11 @@ export default connect(mapStateToItems)(BillScreen);
 //   }
 // )}
 // 
+ /*{ <FlatList
+            data = {this.props.items}
+            ItemSeparatorComponent = {this.FlatListItemSeperator}
+            renderItem={({item}) => <RenderItem item={item.itemName} />}
+          //keyExtractor={item => item.itemName}
+            // extraData={this.state}
+          />
+           }*/
