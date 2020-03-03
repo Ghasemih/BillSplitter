@@ -2,6 +2,7 @@ import {itemsStore} from './items.store';
 
 const items = [
     {
+    id:0,
     itemName: "Item 1",
     price: 10,
     assignedPeople: ["Person A"],
@@ -9,6 +10,7 @@ const items = [
     tipValue: 10
     },
     {
+    id:1,
     itemName: "Item 2",
     price: 20,
     assignedPeople: ["Person A", "Person B"],
@@ -16,6 +18,7 @@ const items = [
     tipValue: 10
     },
     {
+    id:2,
     itemName: "Item 3",
     price: 30,
     assignedPeople: ["Person B"],

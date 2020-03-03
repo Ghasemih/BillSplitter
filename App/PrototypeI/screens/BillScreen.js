@@ -1,14 +1,38 @@
 import React, { Component } from 'react';
-import { TextInput, StyleSheet, Text, View, Button, Image } from 'react-native';
+import { TextInput, StyleSheet, Text, View, Button, Image, FlatList, TouchableOpacity} from 'react-native';
 import PropTypes from 'prop-types';
 import {connect} from 'remx';
 import {itemsStore} from '../items/items.store';
 import * as itemsActions from '../items/items.actions';
+import { ListItem } from 'react-native-ui-lib';
+import {View as AnimatableView} from 'react-native-animatable';
+
+function RenderItem({item}){
+  console.log(item);
+  return(
+  <View>
+    <Text>
+      {item}
+    </Text>
+  </View>
+  );
+    
+    // <ListItem
+    //   activeOpactiy={0.1}
+    //   onPress={() => console.log(item)}
+    // >
+    //   <ListItem.Part>
+    //   <Text>{item.itemName}</Text>
+    //   <Text>{item.price}</Text>
+    //   </ListItem.Part>  
+    // </ListItem>
+}
+
 
 class BillScreen extends React.Component {
 
     state = {
-        image : null,
+        renderItems : [],
     };
 
     static propTypes = {
@@ -20,10 +44,18 @@ class BillScreen extends React.Component {
     componentDidMount(){
       itemsActions.fetchItems();
       itemsActions.fetchPerson();
+      this.setState({renderItems : this.props.items})
     }
 
     static navigationOptions = {
         title: 'BillScreen\t',
+    };
+
+
+      
+
+    FlatListItemSeperator = () => {
+      <View style={styles.line}></View>
     };
 
     render() {
@@ -33,6 +65,14 @@ class BillScreen extends React.Component {
                 <Text style={styles.heading}>BillScreen</Text>
 
                 <Text>{JSON.stringify(this.props.items)}</Text>
+                <FlatList
+                  data = {this.props.items}
+                  ItemSeparatorComponent = {this.FlatListItemSeperator}
+                  renderItem={({item}) => <RenderItem item={item.itemName} />}
+                  keyExtractor={item => item.itemName}
+                  // extraData={this.state}
+                />
+                
 
                 <Text>{JSON.stringify(this.props.people)}</Text>
                 <Button
@@ -107,6 +147,17 @@ const styles = StyleSheet.create({
       justifyContent: 'center',
       alignItems: 'center',
       backgroundColor: '#CDDC39'
+    },
+    line: {
+      height: 0.5,
+      width: "100%",
+      backgroundColor:"rgba(255,255,255,0.5)"
+    },
+    item: {
+      backgroundColor: '#f9c2ff',
+      padding: 10,
+      marginVertical: 8,
+      marginHorizontal: 16,
     }
   });
 
