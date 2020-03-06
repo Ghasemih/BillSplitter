@@ -55,25 +55,23 @@ const items = [
   }
 ];
 
-function Item({ title }) {
+function Item({ item }) {
   return (
     <View style={styles.item}>
-      <Text style={styles.title}>{title}</Text>
+      <Text style={styles.title}>{item.itemName}</Text>
+      <Text style={styles.price}>{item.price}</Text>
     </View>
   );
 }
 
-
-function RenderItem({item}){
-  console.log(item);
-  return(
-  <View>
-    <Text>
-      {item}
-    </Text>
-  </View>
+function People({ person }) {
+  return (
+    <View style={styles.person}>
+      <Text style={styles.title}>{person.personName}</Text>
+      <Text style={styles.price}>{person.selected}</Text>
+    </View>
   );
-    
+}
     // <ListItem
     //   activeOpactiy={0.1}
     //   onPress={() => console.log(item)}
@@ -83,7 +81,6 @@ function RenderItem({item}){
     //   <Text>{item.price}</Text>
     //   </ListItem.Part>  
     // </ListItem>
-}
 
 function mapStateToItems() {
   return {
@@ -117,7 +114,9 @@ class BillScreen extends React.Component {
 
 
     FlatListItemSeperator = () => {
+      return(
       <View style={styles.line}></View>
+      )
     };
 
     render() {
@@ -129,12 +128,25 @@ class BillScreen extends React.Component {
 
           <SafeAreaView style={styles.container}>
           <FlatList
-            data={items}
-            renderItem={({ item }) => <Item title={item.itemName} />}
+            data={this.props.items}
+            renderItem={({ item }) => <Item item={item} />}
             keyExtractor={item => item.id}
             contentContainerStyle={{ paddingBottom: 0}}
+            ItemSeparatorComponent={this.FlatListItemSeperator}
           />
            </SafeAreaView>
+
+
+           <SafeAreaView style={styles.containerPeople}>
+          <FlatList
+            data={this.props.people}
+            renderItem={({ item }) => <People person={item} />}
+            keyExtractor={item => item.id}
+            contentContainerStyle={{ paddingBottom: 0}}
+            horizontal={true}
+          />
+           </SafeAreaView>
+
 
           <Button
           title='Go to Add Item Screen Page'
@@ -172,12 +184,16 @@ class BillScreen extends React.Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    
     marginTop: Constants.statusBarHeight,
-    alignItems: 'center',
-    justifyContent: 'center',
+    alignItems: 'stretch',
+    justifyContent: 'center'
   },
-
+  containerPeople: {
+    flex: 1,
+    marginTop: Constants.statusBarHeight,
+    alignItems: 'stretch',
+    justifyContent: 'center'
+  },
     centeralign: {
       flex: 1,
       backgroundColor: '#fff',
@@ -194,6 +210,11 @@ const styles = StyleSheet.create({
       color: 'black',
       fontSize: 15,
       textAlign: 'center'
+    },
+    price: {
+      color: 'blue',
+      fontSize: 20,
+      textAlign: 'right'
     },
     inputBox: {
       height: 30,
@@ -214,14 +235,21 @@ const styles = StyleSheet.create({
     line: {
       height: 0.5,
       width: "100%",
-      backgroundColor:"rgba(255,255,255,0.5)"
+      backgroundColor:"#000"
     },
     item: {
-      backgroundColor: '#f9c2ff',
-      padding: 10,
-      marginVertical: 8,
-      marginHorizontal: 16,
+      backgroundColor: '#DCEDC8',
+      padding: 5,
+      marginVertical: 10,
+      marginHorizontal: 10,
+    },
+    person:{
+      backgroundColor: '#E1BEE7',
+      padding: 5,
+      marginVertical: 16,
+      marginHorizontal: 16,  
     }
+
   });
 
 export default connect(mapStateToItems)(BillScreen);
