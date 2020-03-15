@@ -150,7 +150,7 @@ class BillScreen extends React.Component {
            </SafeAreaView>
 
 
-          <Button
+          {/* <Button
           title='Go to Add Item Screen Page'
           //helps in navigation to different screens
           onPress={() => this.props.navigation.navigate('AddItem')}
@@ -166,7 +166,7 @@ class BillScreen extends React.Component {
           title='Go to Add Person Screen Page'
           //helps in navigation to different screens
           onPress={() => this.props.navigation.navigate('AddPerson')}
-          />
+          /> */}
 
           <Button
           title='Go to Step by Step Entry'
