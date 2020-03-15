@@ -2,54 +2,47 @@ import React, { Component } from 'react';
 import { TextInput, StyleSheet, Text, View, Button, Image } from 'react-native';
 import * as itemsActions from '../items/items.actions';
 
-export default class AddItemScreen extends React.Component {
+export default class Step2AddPerson extends React.Component {
 
     constructor(props){
       super(props)
       this.state = {
-          itemName : "",
-          price: 0.0,
+          person : null,
       };
     }
 
+    // componentDidMount(){
+
+    // }
+
     static navigationOptions = {
-        title: "AddItemScreen",
+        title: 'Step 2: Add Persons to the Bill\t',
     };
 
     render() {
         const {navigation} = this.props;
         return (
-            
             <View style={styles.centeralign}>
-                <Text style={styles.heading}>AddItemScreen</Text>
+                <Text style={styles.heading}>Step 2: Add Persons to the Bill</Text>
                 
                 <TextInput
               style={styles.inputBox}
-              onChangeText={itemName => this.setState({itemName})}
-              placeholder="Enter Item Name" />
-                
-                <TextInput
-              style={styles.inputBox}
-              onChangeText={price => this.setState({price})}
-              placeholder="Enter Item Price" 
-              keyboardType="number-pad"  
-              returnKeyType='done'   />    
+              onChangeText={person => this.setState({person})}
+              placeholder="Enter Person's Name" />
                 
                 <Button
-                title="Go to BillScreen Page"
+                title='Assign Items to this Person!'
                 //helps in navigation to different screens
                 onPress={() => {
-                  itemsActions.addItem({
-                    itemName: this.state.itemName,
-                    price: this.state.price,
-                    assignedPeople: [],
-                    taxValue: 13,
-                    tipValue: 10
+                  itemsActions.addPerson({
+                    personName: this.state.person,
+                    selected: false
                   });
-                  this.props.navigation.navigate('Bill');
+                  this.props.navigation.navigate('Bill')
                   }
                 }
-                />
+                  />
+
             </View>
         )
     };
