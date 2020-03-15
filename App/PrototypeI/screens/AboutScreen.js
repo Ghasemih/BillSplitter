@@ -40,9 +40,10 @@ export default class AboutScreen extends React.Component {
 //navigation.getParam('name','default value')
 const styles = StyleSheet.create({
     centeralign: {
-      flex: 1,
+      flex: 3,
       backgroundColor: '#fff',
       alignItems: 'center',
+      alignSelf: 'center',
       justifyContent: 'center',
     },
     heading: {

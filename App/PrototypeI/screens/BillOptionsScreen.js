@@ -18,7 +18,7 @@ export default class BillOptionsScreen extends React.Component {
   render() {
     return (
       <View style={styles.centeralign}>
-        <Text style={styles.text} >Choose your method of input</Text>
+        <Text style={styles.subheading} >Choose your method of input</Text>
         
         <Text>{'\n'}</Text>
 
@@ -76,6 +76,12 @@ const styles = StyleSheet.create({
       color: 'red',
       fontWeight: 'bold',
       fontSize: 30,
+      textAlign: 'center'
+    },
+    subheading: {
+      color: 'black',
+      fontWeight: 'bold',
+      fontSize: 22,
       textAlign: 'center'
     },
     text: {

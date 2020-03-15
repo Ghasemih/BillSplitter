@@ -126,7 +126,7 @@ class BillScreen extends React.Component {
 
           <Text>{'\n\n'}</Text>
           
-          <Text style={styles.text} >Your bill of items so far</Text>
+          <Text style={styles.subheading} >Your bill of items so far</Text>
 
           <SafeAreaView style={styles.container}>
           <FlatList
@@ -136,10 +136,10 @@ class BillScreen extends React.Component {
             contentContainerStyle={{ paddingBottom: 0}}
             ItemSeparatorComponent={this.FlatListItemSeperator}
           />
-           </SafeAreaView>
+          </SafeAreaView>
 
 
-           <SafeAreaView style={styles.containerPeople}>
+          <SafeAreaView style={styles.containerPeople}>
           <FlatList
             data={this.props.people}
             renderItem={({ item }) => <People person={item} />}
@@ -147,7 +147,7 @@ class BillScreen extends React.Component {
             contentContainerStyle={{ paddingBottom: 0}}
             horizontal={true}
           />
-           </SafeAreaView>
+          </SafeAreaView>
 
 
           {/* <Button
@@ -193,13 +193,13 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     marginTop: Constants.statusBarHeight,
-    alignItems: 'stretch',
+    alignItems: 'center',
     justifyContent: 'center'
   },
   containerPeople: {
     flex: 1,
     marginTop: Constants.statusBarHeight,
-    alignItems: 'stretch',
+    alignItems: 'center',
     justifyContent: 'center'
   },
     centeralign: {
@@ -212,6 +212,12 @@ const styles = StyleSheet.create({
       color: 'red',
       fontWeight: 'bold',
       fontSize: 30,
+      textAlign: 'center'
+    },
+    subheading: {
+      color: 'black',
+      fontWeight: 'bold',
+      fontSize: 22,
       textAlign: 'center'
     },
     text: {
