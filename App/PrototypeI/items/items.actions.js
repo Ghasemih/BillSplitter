@@ -30,11 +30,11 @@ const items = [
 const people = [
     {
     personName: "Person A",
-    selected: false
+    selectedItems: []
     },
     {
     personName: "Person B",
-    selected: false
+    selectedItems: []
     }
 ];
 

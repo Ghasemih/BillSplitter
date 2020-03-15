@@ -12,11 +12,11 @@ import Constants from 'expo-constants';
 const people = [
   {
   personName: "Person A",
-  selected: false
+  selectedItems: []
   },
   {
   personName: "Person B",
-  selected: false
+  selectedItems: []
   }
 ];
 
@@ -68,7 +68,7 @@ function People({ person }) {
   return (
     <View style={styles.person}>
       <Text style={styles.title}>{person.personName}</Text>
-      <Text style={styles.price}>{person.selected}</Text>
+      {/* <Text style={styles.price}>{person.selectedItems}</Text> */}
     </View>
   );
 }
@@ -83,10 +83,12 @@ function People({ person }) {
     // </ListItem>
 
 function mapStateToItems() {
+  console.log(itemsStore.getPeople());
   return {
     items: itemsStore.getItems(),
     people: itemsStore.getPeople(),
   }
+
 }
 
 
