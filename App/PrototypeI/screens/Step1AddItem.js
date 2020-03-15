@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { TextInput, StyleSheet, Text, View, Button, Image } from 'react-native';
 import * as itemsActions from '../items/items.actions';
 
-export default class AddItemScreen extends React.Component {
+export default class Step1AddItem extends React.Component {
 
     constructor(props){
       super(props)
@@ -13,7 +13,7 @@ export default class AddItemScreen extends React.Component {
     }
 
     static navigationOptions = {
-        title: "AddItemScreen",
+        title: "Step 1: Add All the Items",
     };
 
     render() {
@@ -21,7 +21,7 @@ export default class AddItemScreen extends React.Component {
         return (
             
             <View style={styles.centeralign}>
-                <Text style={styles.heading}>AddItemScreen</Text>
+                <Text style={styles.heading}>Step 1: Add All the Items</Text>
                 
                 <TextInput
               style={styles.inputBox}
@@ -36,7 +36,7 @@ export default class AddItemScreen extends React.Component {
               returnKeyType='done'   />    
                 
                 <Button
-                title="Go to BillScreen Page"
+                title="Add Item to List"
                 //helps in navigation to different screens
                 onPress={() => {
                   itemsActions.addItem({
@@ -46,10 +46,26 @@ export default class AddItemScreen extends React.Component {
                     taxValue: 13,
                     tipValue: 10
                   });
-                  this.props.navigation.navigate('Bill');
+                 this.props.navigation.navigate('Step1AddItem');
                   }
                 }
                 />
+
+              <Button
+                title="Finished adding Items!"
+                //helps in navigation to different screens
+                onPress={() => {
+                  itemsActions.addItem({
+                    itemName: this.state.itemName,
+                    price: this.state.price,
+                    assignedPeople: [],
+                    taxValue: 13,
+                    tipValue: 10
+                  });
+                 this.props.navigation.navigate('Step2AddPerson');
+                  }
+                }
+                />      
             </View>
         )
     };

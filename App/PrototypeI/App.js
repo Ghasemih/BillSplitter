@@ -12,6 +12,8 @@ import SummaryScreen from './screens/SummaryScreen';
 import AboutScreen from './screens/AboutScreen';
 import BillOptionsScreen from './screens/BillOptionsScreen';
 import SimpleDivideScreen from './screens/SimpleDivideScreen';
+import Step1AddItem from './screens/Step1AddItem';
+import Step2AddPerson from './screens/Step2AddPerson';
 
 class HomeScreen extends React.Component {
   constructor(props) {
@@ -90,7 +92,9 @@ const AppNavigator = createStackNavigator(
     EditItem: EditItemScreen,
     EditPerson : EditPersonScreen,
     AboutScreen : AboutScreen,
-    SimpleDivide : SimpleDivideScreen
+    SimpleDivide : SimpleDivideScreen,
+    Step1AddItem : Step1AddItem,
+    Step2AddPerson : Step2AddPerson
   },
   {
     initialRouteName: 'Home',

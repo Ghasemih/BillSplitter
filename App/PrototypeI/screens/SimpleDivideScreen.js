@@ -24,7 +24,8 @@ render() {
           onChangeText={total => this.setState({ total })}
           // value={this.state.total} 
           placeholder="Enter Total + Tip"
-          keyboardType='number-pad' />
+          keyboardType='number-pad' 
+          returnKeyType='done' />
 
         <Text>{'\n'}</Text>
         
@@ -34,7 +35,8 @@ render() {
           onChangeText={people => this.setState({ people })}
           // value={this.state.people} 
           placeholder="Number of People"
-          keyboardType='number-pad' />
+          keyboardType='number-pad' 
+          returnKeyType='done' />
 
         <Text>{'\n'}</Text>
 

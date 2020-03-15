@@ -123,6 +123,8 @@ class BillScreen extends React.Component {
         const {navigation} = this.props;
         return ( 
           <View style={styles.centeralign}>
+
+          <Text>{'\n\n'}</Text>
           
           <Text style={styles.text} >Your bill of items so far</Text>
 
@@ -167,12 +169,18 @@ class BillScreen extends React.Component {
           />
 
           <Button
+          title='Go to Step by Step Entry'
+          //helps in navigation to different screens
+          onPress={() => this.props.navigation.navigate('Step1AddItem')}
+          />
+
+          <Button
           title='Go to Summary Screen Page'
           //helps in navigation to different screens
           onPress={() => this.props.navigation.navigate('Summary')}
           />
 
-          <Text>{'\n\n\n\n\n\n\n\n'}</Text>
+          <Text>{'\n\n\n\n\n'}</Text>
 
           </View>                  
         );
@@ -246,8 +254,8 @@ const styles = StyleSheet.create({
     person:{
       backgroundColor: '#E1BEE7',
       padding: 5,
-      marginVertical: 16,
-      marginHorizontal: 16,  
+      marginVertical: 30,
+      marginHorizontal: 5,  
     }
 
   });
