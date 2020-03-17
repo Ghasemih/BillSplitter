@@ -175,7 +175,7 @@ class BillScreen extends React.Component {
           //helps in navigation to different screens
           onPress={() => this.props.navigation.navigate('Step1AddItem')}
           />
-
+          <Text>{'\n'}</Text>
           <Button
           title='Go to Summary Screen Page'
           //helps in navigation to different screens
@@ -210,12 +210,6 @@ const styles = StyleSheet.create({
       alignItems: 'center',
       justifyContent: 'center',
     },
-    heading: {
-      color: 'red',
-      fontWeight: 'bold',
-      fontSize: 30,
-      textAlign: 'center'
-    },
     subheading: {
       color: 'black',
       fontWeight: 'bold',
@@ -231,22 +225,6 @@ const styles = StyleSheet.create({
       color: 'blue',
       fontSize: 20,
       textAlign: 'right'
-    },
-    inputBox: {
-      height: 30,
-      borderColor: 'black',
-      borderBottomWidth: 1,
-      width: '30%',
-      textAlign: 'center'
-    },
-    ImageContainer: {
-      borderRadius: 1,
-      width: 250,
-      height: 250,
-      borderColor: '#9B9B9B',
-      justifyContent: 'center',
-      alignItems: 'center',
-      backgroundColor: '#CDDC39'
     },
     line: {
       height: 0.5,

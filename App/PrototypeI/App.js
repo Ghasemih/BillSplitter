@@ -46,7 +46,7 @@ class HomeScreen extends React.Component {
               }
             )}
           />
-
+          <Text>{'\n'}</Text>
           <Button 
             title="View Previous Bills"
             //helps in navigation to different screens
@@ -57,7 +57,7 @@ class HomeScreen extends React.Component {
               }
             )}
           />
-
+          <Text>{'\n'}</Text>
           <Button 
             title="About"
             //helps in navigation to different screens
@@ -119,7 +119,7 @@ const styles = StyleSheet.create({
     textAlign: 'center'
   },
   button:{
-    marginBottom: 20,
+    marginBottom: 100,
   },
   text: {
     color: 'black',

@@ -58,11 +58,6 @@ const styles = StyleSheet.create({
       fontSize: 30,
       textAlign: 'center'
     },
-    text: {
-      color: 'black',
-      fontSize: 15,
-      textAlign: 'center'
-    },
     inputBox: {
       height: 30,
       borderColor: 'black',
@@ -70,15 +65,6 @@ const styles = StyleSheet.create({
       width: '40%',
       textAlign: 'center'
     },
-    ImageContainer: {
-      borderRadius: 1,
-      width: 250,
-      height: 250,
-      borderColor: '#9B9B9B',
-      justifyContent: 'center',
-      alignItems: 'center',
-      backgroundColor: '#CDDC39'
-    }
   });
 
 //   onPress={() => this.props.navigation.navigate('AddBill',{

@@ -103,17 +103,6 @@ const styles = StyleSheet.create({
       alignItems: 'center',
       justifyContent: 'center'
     },
-    heading: {
-      color: 'red',
-      fontWeight: 'bold',
-      fontSize: 30,
-      textAlign: 'center'
-    },
-    text: {
-      color: 'black',
-      fontSize: 15,
-      textAlign: 'center'
-    },
     ImageContainer: {
       borderRadius: 1,
       width: 250,
@@ -121,7 +110,7 @@ const styles = StyleSheet.create({
       borderColor: '#9B9B9B',
       justifyContent: 'center',
       alignItems: 'center',
-      backgroundColor: '#CDDC39'
+      backgroundColor: 'blue'
     }
   });
 
