@@ -20,10 +20,9 @@ render() {
       <View style={styles.centeralign}>
         <TextInput
           style={styles.inputBox}
-          // onChangeText={text => onChangeTextTotal(text)}
           onChangeText={total => this.setState({ total })}
           // value={this.state.total} 
-          placeholder="Enter Total + Tip"
+          placeholder="Enter Total Cost"
           keyboardType='number-pad' 
           returnKeyType='done' />
 
@@ -31,11 +30,10 @@ render() {
         
         <TextInput
           style={styles.inputBox}
-          // onChangeText={text => onChangeTextPeople(text)}
           onChangeText={people => this.setState({ people })}
           // value={this.state.people} 
           placeholder="Number of People"
-          keyboardType='number-pad' 
+          keyboardType='number-pad'
           returnKeyType='done' />
 
         <Text>{'\n'}</Text>
@@ -69,7 +67,7 @@ const styles = StyleSheet.create({
       height: 30,
       borderColor: 'black',
       borderBottomWidth: 1,
-      width: '30%',
+      width: '40%',
       textAlign: 'center'
     },
     ImageContainer: {

@@ -21,7 +21,7 @@ export default class AddBillScreen extends React.Component {
   
     //Need permission to access camera roll for ios
     getPermissionAsync = async () => {
-      if (Constants.platform.ios) {
+      if (Constants.platform.ios || Constants.platform.android) {
       const {status} = await Permissions.askAsync(Permissions.CAMERA_ROLL);
       const {status2} = await Permissions.askAsync(Permissions.CAMERA);
 

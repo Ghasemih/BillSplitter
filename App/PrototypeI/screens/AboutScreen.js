@@ -7,10 +7,6 @@ export default class AboutScreen extends React.Component {
         image : null,
     };
 
-    // componentDidMount(){
-
-    // }
-
     static navigationOptions = {
         title: 'About Us\t',
     };
@@ -74,10 +70,3 @@ const styles = StyleSheet.create({
       backgroundColor: '#CDDC39'
     }
   });
-
-//   onPress={() => this.props.navigation.navigate('AddBill',{
-//     total: 10,
-//     name: 'ibrahim',
-//   }
-// )}
-// 
