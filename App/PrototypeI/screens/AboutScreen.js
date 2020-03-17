@@ -17,11 +17,9 @@ export default class AboutScreen extends React.Component {
             <View style={styles.centeralign}>
                 <Text style={styles.text}>Developed by 2019-2020 Group #26</Text>
 
-        <Text>{'\n'}</Text>
-
-                <Text style={styles.text}>This application was created by 6 Engineering students at McMaster University as part of their final year Software Engineering capstone project</Text>
-        
-        <Text>{'\n'}</Text>
+                <Text>{'\n'}</Text>
+                        <Text style={styles.text}>This application was created by 6 Engineering students at McMaster University as part of their final year Software Engineering capstone project</Text>
+                <Text>{'\n'}</Text>
 
                 <Button
                 title='Go to Main Page'
