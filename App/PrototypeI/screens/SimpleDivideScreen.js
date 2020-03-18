@@ -20,10 +20,9 @@ render() {
       <View style={styles.centeralign}>
         <TextInput
           style={styles.inputBox}
-          // onChangeText={text => onChangeTextTotal(text)}
           onChangeText={total => this.setState({ total })}
           // value={this.state.total} 
-          placeholder="Enter Total + Tip"
+          placeholder="Enter Total Cost"
           keyboardType='number-pad' 
           returnKeyType='done' />
 
@@ -31,11 +30,10 @@ render() {
         
         <TextInput
           style={styles.inputBox}
-          // onChangeText={text => onChangeTextPeople(text)}
           onChangeText={people => this.setState({ people })}
           // value={this.state.people} 
           placeholder="Number of People"
-          keyboardType='number-pad' 
+          keyboardType='number-pad'
           returnKeyType='done' />
 
         <Text>{'\n'}</Text>
@@ -60,27 +58,13 @@ const styles = StyleSheet.create({
       fontSize: 30,
       textAlign: 'center'
     },
-    text: {
-      color: 'black',
-      fontSize: 15,
-      textAlign: 'center'
-    },
     inputBox: {
       height: 30,
       borderColor: 'black',
       borderBottomWidth: 1,
-      width: '30%',
+      width: '40%',
       textAlign: 'center'
     },
-    ImageContainer: {
-      borderRadius: 1,
-      width: 250,
-      height: 250,
-      borderColor: '#9B9B9B',
-      justifyContent: 'center',
-      alignItems: 'center',
-      backgroundColor: '#CDDC39'
-    }
   });
 
 //   onPress={() => this.props.navigation.navigate('AddBill',{

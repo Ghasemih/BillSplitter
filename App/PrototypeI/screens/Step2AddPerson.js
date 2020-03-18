@@ -91,15 +91,6 @@ const styles = StyleSheet.create({
     borderBottomWidth: 1,
     width: '30%',
     textAlign: 'center'
-  },
-  ImageContainer: {
-    borderRadius: 1,
-    width: 250,
-    height: 250,
-    borderColor: '#9B9B9B',
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#CDDC39'
   }
 });
 

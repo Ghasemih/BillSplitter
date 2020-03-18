@@ -22,7 +22,7 @@ export default class BillOptionsScreen extends React.Component {
         
         <Text>{'\n'}</Text>
 
-        <View style={styles.button}>
+        <View>
           <Button 
             title="Take a photo"
             //helps in navigation to different screens
@@ -33,7 +33,7 @@ export default class BillOptionsScreen extends React.Component {
               }
             )}
           />
-
+           <Text>{'\n'}</Text>
           <Button 
             title="Enter Values Manually"
             //helps in navigation to different screens
@@ -44,7 +44,7 @@ export default class BillOptionsScreen extends React.Component {
               }
             )}
           />
-
+          <Text>{'\n'}</Text>
           <Button 
             title="Divide Equally"
             //helps in navigation to different screens
@@ -55,7 +55,6 @@ export default class BillOptionsScreen extends React.Component {
               }
             )}
           />
-
         </View>
 
       </View>
@@ -72,38 +71,14 @@ const styles = StyleSheet.create({
       alignItems: 'center',
       justifyContent: 'center',
     },
-    heading: {
-      color: 'red',
-      fontWeight: 'bold',
-      fontSize: 30,
-      textAlign: 'center'
-    },
     subheading: {
       color: 'black',
       fontWeight: 'bold',
       fontSize: 22,
       textAlign: 'center'
     },
-    text: {
-      color: 'black',
-      fontSize: 15,
-      textAlign: 'center'
-    },
-    inputBox: {
-      height: 30,
-      borderColor: 'black',
-      borderBottomWidth: 1,
-      width: '30%',
-      textAlign: 'center'
-    },
-    ImageContainer: {
-      borderRadius: 1,
-      width: 250,
-      height: 250,
-      borderColor: '#9B9B9B',
-      justifyContent: 'center',
-      alignItems: 'center',
-      backgroundColor: '#CDDC39'
+    but: {
+      margin: 20 
     }
   });
 

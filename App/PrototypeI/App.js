@@ -46,7 +46,7 @@ class HomeScreen extends React.Component {
               }
             )}
           />
-
+          <Text>{'\n'}</Text>
           <Button 
             title="View Previous Bills"
             //helps in navigation to different screens
@@ -57,8 +57,7 @@ class HomeScreen extends React.Component {
               }
             )}
           />
-
-          
+          <Text>{'\n'}</Text>
           <Button 
             title="About"
             //helps in navigation to different screens
@@ -70,15 +69,10 @@ class HomeScreen extends React.Component {
             )}
           />
         </View>
-
       </View>
-
     );
   }
 }
-
-
-
 
 const AppNavigator = createStackNavigator(
   {
@@ -102,7 +96,6 @@ const AppNavigator = createStackNavigator(
 );
 
 const AppContainer = createAppContainer(AppNavigator);
-// export default App;
 
 export default class App extends React.Component {
   render() {
@@ -110,47 +103,6 @@ export default class App extends React.Component {
   }
 }
 
-// export default class App extends React.Component {
-
-//   // const [total, onChangeTextTotal] = React.useState('');
-//   // const [people, onChangeTextPeople] = React.useState('');
-
-//   constructor(props){
-//     super(props)
-//     this.state = {
-//       total: 0,
-//       people: 1,
-//     };
-//   };
-
-//   render(){
-
-//     return (
-//       <View style={styles.centeralign}>
-//         <Text style ={styles.heading} > BillSplitter Prototype</Text>
-//         <Text style ={styles.text} > This application will help you divide your bill invidiually amongst your people</Text>
-
-//           <TextInput
-//             style={styles.inputBox}
-//             // onChangeText={text => onChangeTextTotal(text)}
-//             onChangeText={total => this.setState({total})}
-//             // value={this.state.total} 
-//             placeholder='Enter Total + Tip'
-//             keyboardType='number-pad'/>
-
-//           <TextInput
-//             style={styles.inputBox}
-//             // onChangeText={text => onChangeTextPeople(text)}
-//             onChangeText={people => this.setState({people})}
-//             // value={this.state.people} 
-//             placeholder='Number of People'
-//             keyboardType='number-pad'/> 
-
-//           <Text style ={styles.heading} >{this.state.total/this.state.people} </Text>
-//       </View>
-//     );
-//   }
-// }
 
 const styles = StyleSheet.create({
   centeralign: {
@@ -167,7 +119,7 @@ const styles = StyleSheet.create({
     textAlign: 'center'
   },
   button:{
-    marginBottom: 20,
+    marginBottom: 100,
   },
   text: {
     color: 'black',

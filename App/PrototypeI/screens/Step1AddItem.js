@@ -161,15 +161,6 @@ const styles = StyleSheet.create({
       width: '30%',
       textAlign: 'center'
     },
-    ImageContainer: {
-      borderRadius: 1,
-      width: 250,
-      height: 250,
-      borderColor: '#9B9B9B',
-      justifyContent: 'center',
-      alignItems: 'center',
-      backgroundColor: '#CDDC39'
-    },
     container: {
       flex: 1,
       marginTop: Constants.statusBarHeight,

@@ -19,13 +19,13 @@ export default class AddBillScreen extends React.Component {
       this.getPermissionAsync();
     }
   
-    //Need permission to access camera roll for ios
+    //Need permission to access camera roll for ios & android
     getPermissionAsync = async () => {
-      if (Constants.platform.ios) {
+      if (Constants.platform.ios || Constants.platform.android) {
       const {status} = await Permissions.askAsync(Permissions.CAMERA_ROLL);
-      const {status2} = await Permissions.askAsync(Permissions.CAMERA);
+      //const {status2} = await Permissions.askAsync(Permissions.CAMERA);
 
-      if (status !== 'granted' || status2 !== 'granted'){
+      if (status !== 'granted'){
           alert('Sorry, need camera roll permissions');
           console.log('Permission to camera roll not granted');
         }
@@ -41,12 +41,10 @@ export default class AddBillScreen extends React.Component {
       });
   
       console.log(result);
-  
       if (!result.cancelled){
         this.setState({image: result.uri});
       }
     };
-  
 
     _takeImage = async () => {
       let result = await ImagePicker.launchCameraAsync({
@@ -68,25 +66,20 @@ export default class AddBillScreen extends React.Component {
       let {image} = this.state;
       return (
         <View style={styles.centeralign}>
-  
-        <Button
-          title="Pick an Image"
-          //helps in navigation to different screens
-          onPress={this._pickImage}
-        />
-        <Button
-          title="Use your Camera"
-          //use camera application
-          onPress={this._takeImage}
-        />
-
+          <Button
+            title="Pick an Image"
+            //helps in navigation to different screens
+            onPress={this._pickImage}
+          />
+          <Button
+            title="Use your Camera"
+            //use camera application
+            onPress={this._takeImage}
+          />
           <View style={styles.ImageContainer}>    
-  {image &&
-       <Image source={{ uri: image }} style={{ width: 250, height: 250}} />}
-  
-
-          <Text>{'\n\n\n\n\n\n\n'}</Text>
-
+            {image && <Image source={{ uri: image }} style={{ width: 250, height: 250}} />}
+          </View>
+    
           <Button
             title="Go to Home page"
             //helps in navigation to different screens
@@ -97,40 +90,18 @@ export default class AddBillScreen extends React.Component {
             //helps in navigation to different screens
             onPress={() => this.props.navigation.navigate('BillOptions')}
           />
-
-          </View>
         </View>
 
-  
       );
     }
 }
-
 
 const styles = StyleSheet.create({
     centeralign: {
       flex: 1,
       backgroundColor: '#fff',
       alignItems: 'center',
-      justifyContent: 'center',
-    },
-    heading: {
-      color: 'red',
-      fontWeight: 'bold',
-      fontSize: 30,
-      textAlign: 'center'
-    },
-    text: {
-      color: 'black',
-      fontSize: 15,
-      textAlign: 'center'
-    },
-    inputBox: {
-      height: 30,
-      borderColor: 'black',
-      borderBottomWidth: 1,
-      width: '30%',
-      textAlign: 'center'
+      justifyContent: 'center'
     },
     ImageContainer: {
       borderRadius: 1,
@@ -139,7 +110,7 @@ const styles = StyleSheet.create({
       borderColor: '#9B9B9B',
       justifyContent: 'center',
       alignItems: 'center',
-      backgroundColor: '#CDDC39'
+      backgroundColor: 'blue'
     }
   });
 
