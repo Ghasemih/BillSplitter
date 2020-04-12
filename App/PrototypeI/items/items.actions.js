@@ -5,7 +5,7 @@ const items = [
     id:0,
     itemName: "Item 1",
     price: 10,
-    assignedPeople: ["Person A"],
+    assignedPeople: [],
     taxValue: 13,
     tipValue: 10
     },
@@ -13,7 +13,7 @@ const items = [
     id:1,
     itemName: "Item 2",
     price: 20,
-    assignedPeople: ["Person A", "Person B"],
+    assignedPeople: [],
     taxValue: 13,
     tipValue: 10
     },
@@ -21,7 +21,7 @@ const items = [
     id:2,
     itemName: "Item 3",
     price: 30,
-    assignedPeople: ["Person B"],
+    assignedPeople: [],
     taxValue: 13,
     tipValue: 10
     }
@@ -30,11 +30,11 @@ const items = [
 const people = [
     {
     personName: "Person A",
-    selectedItems: []
+    selectedItems: ["Item 1", "Item 2"]
     },
     {
     personName: "Person B",
-    selectedItems: []
+    selectedItems: ["Item 2", "Item 3"]
     }
 ];
 
@@ -47,12 +47,20 @@ export function addItem(item){
     itemsStore.addItem(item);
 }
 
+export function getItems(){
+    itemsStore.getItems();
+}
+
 export function fetchPerson(){
     itemsStore.setPeople(people);
 } 
 
 export function addPerson(person){
     itemsStore.addPerson(person);
+}
+
+export function getPeople(){
+    itemsStore.getPeople();
 }
 
 

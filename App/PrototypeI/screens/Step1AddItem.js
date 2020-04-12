@@ -101,13 +101,6 @@ class Step1AddItem extends React.Component {
                 title="Finished adding Items!"
                 //helps in navigation to different screens
                 onPress={() => {
-                  itemsActions.addItem({
-                    itemName: this.state.itemName,
-                    price: this.state.price,
-                    assignedPeople: [],
-                    taxValue: 13,
-                    tipValue: 10
-                  });
                  this.props.navigation.navigate('Step2AddPerson');
                   }
                 }

@@ -2,8 +2,10 @@ import React, { Component } from 'react';
 import { TextInput, SafeAreaView, StyleSheet, Text, View, Button, Image } from 'react-native';
 import * as itemsActions from '../items/items.actions';
 import SelectMultiple from 'react-native-select-multiple'
+import {itemsStore} from '../items/items.store';
+import PropTypes from 'prop-types';
 
-const allItems = ['Item 1', 'Item 2', 'Item 3']
+const allItems = ['temp 1', 'temp 2']
 
 export default class Step2AddPerson extends React.Component {
 
@@ -11,13 +13,36 @@ export default class Step2AddPerson extends React.Component {
     super(props)
     this.state = {
       person: null,
-      selectedItems: []
+      selectedItems: [],
+      itemsFromCloud: []
     };
   }
 
-  // componentDidMount(){
+  static propTypes = {
+    componentId: PropTypes.string,
+    items: PropTypes.array
+  };
 
-  // }
+  convertToItemNames(listOfItems) {
+    // console.log(listOfItems);
+    temp = [];
+    listOfItems.map( (eachItem) => {
+      // console.log(eachItem.itemName);
+      temp.push(eachItem.itemName);
+    });
+    // temp.pop();
+    this.setState({itemsFromCloud: temp});
+    // console.log(temp);
+  }
+
+  componentDidMount(){
+    itemStoreFromCloud = itemsStore.getItems(); 
+    // console.log(itemStoreFromCloud);
+    this.convertToItemNames(itemStoreFromCloud);
+    // itemsStore.getItems();
+    // this.convertToItemNames(this.props.items);
+    // this.setState({ itemsFromCloud : itemsStore.getItems()});
+  }
 
   onSelectionsChange = (selectedItems) => {
     // selectedFruits is array of { label, value }
@@ -43,7 +68,7 @@ export default class Step2AddPerson extends React.Component {
 
         <SafeAreaView style={styles.centeralign} > 
           <SelectMultiple
-            items={allItems}
+            items={this.state.itemsFromCloud}
             selectedItems={this.state.selectedItems}
             onSelectionsChange={this.onSelectionsChange} />
         </SafeAreaView>

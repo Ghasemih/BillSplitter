@@ -83,7 +83,7 @@ function People({ person }) {
     // </ListItem>
 
 function mapStateToItems() {
-  console.log(itemsStore.getPeople());
+  // console.log(itemsStore.getPeople());
   return {
     items: itemsStore.getItems(),
     people: itemsStore.getPeople(),
