@@ -3,39 +3,39 @@ import {itemsStore} from './items.store';
 const items = [
     {
     id:0,
-    itemName: "Item 1",
-    price: 10,
+    itemName: " Example Item! ",
+    price: 0,
     assignedPeople: ["Person A"],
     taxValue: 13,
     tipValue: 10
     },
-    {
-    id:1,
-    itemName: "Item 2",
-    price: 20,
-    assignedPeople: ["Person A", "Person B"],
-    taxValue: 13,
-    tipValue: 10
-    },
-    {
-    id:2,
-    itemName: "Item 3",
-    price: 30,
-    assignedPeople: ["Person B"],
-    taxValue: 13,
-    tipValue: 10
-    }
+    // {
+    // id:1,
+    // itemName: "Item 2",
+    // price: 20,
+    // assignedPeople: ["Person A", "Person B"],
+    // taxValue: 13,
+    // tipValue: 10
+    // },
+    // {
+    // id:2,
+    // itemName: "Item 3",
+    // price: 30,
+    // assignedPeople: ["Person B"],
+    // taxValue: 13,
+    // tipValue: 10
+    // }
 ];
 
 const people = [
     {
-    personName: "Person A",
+    personName: "Example Person!",
     selectedItems: []
     },
-    {
-    personName: "Person B",
-    selectedItems: []
-    }
+    // {
+    // personName: "Person B",
+    // selectedItems: []
+    // }
 ];
 
 

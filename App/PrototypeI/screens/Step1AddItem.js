@@ -1,11 +1,17 @@
 import React, { Component } from 'react';
-import { TextInput, StyleSheet, Text, View, Button, Image,SafeAreaView, FlatList, TouchableOpacity} from 'react-native';
 import * as itemsActions from '../items/items.actions';
 import {View as AnimatableView} from 'react-native-animatable';
 import Constants from 'expo-constants';
 import PropTypes from 'prop-types';
 import {connect} from 'remx';
 import {itemsStore} from '../items/items.store';
+
+
+//UI Elements
+import { TextInput, StyleSheet, View, Image,SafeAreaView, FlatList, TouchableOpacity} from 'react-native';
+import { Button, Text } from 'react-native-elements';
+import Icon from 'react-native-vector-icons/FontAwesome';
+
 
 
 function Item({ item }) {
@@ -82,7 +88,10 @@ class Step1AddItem extends React.Component {
                 <Text>{'\n'}</Text>   
 
                 <Button
-                title="Add Item to List"
+                title=
+                " 
+                Add Item to List
+                "
                 //helps in navigation to different screens
                 onPress={() => {
                   itemsActions.addItem({
@@ -96,9 +105,14 @@ class Step1AddItem extends React.Component {
                   }
                 }
                 />
+          
+          <Text>{'\n'}</Text>
 
               <Button
-                title="Finished adding Items!"
+                title=
+                "
+                Finished adding Items!
+                "
                 //helps in navigation to different screens
                 onPress={() => {
                   itemsActions.addItem({
@@ -129,38 +143,50 @@ class Step1AddItem extends React.Component {
     };
 
 }
-//navigation.getParam('name','default value')
+
 const styles = StyleSheet.create({
     centeralign: {
-      flex: 1,
-      backgroundColor: '#fff',
-      alignItems: 'center',
-      justifyContent: 'center',
-    },
-    heading: {
-      color: 'red',
-      fontWeight: 'bold',
-      fontSize: 30,
-      textAlign: 'center'
-    },
-    subheading: {
+    flex: 20,
+    backgroundColor: '#fff',
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginHorizontal: 25
+  },
+  heading: {
+    color: 'red',
+    fontWeight: 'bold',
+    fontSize: 30,
+    marginBottom: 30,
+    textAlign: 'center'
+  },
+  subheading: {
       color: 'black',
-      fontWeight: 'bold',
       fontSize: 22,
       textAlign: 'center'
-    },
-    text: {
-      color: 'black',
-      fontSize: 15,
-      textAlign: 'center'
-    },
-    inputBox: {
-      height: 30,
-      borderColor: 'black',
-      borderBottomWidth: 1,
-      width: '30%',
-      textAlign: 'center'
-    },
+  },
+  button:{
+    marginBottom: 50
+  },
+  text: {
+    color: 'black',
+    fontSize: 15,
+    marginBottom: 15,
+    textAlign: 'center',
+  },
+  text2: {
+    color: 'black',
+    fontSize: 15,
+    marginBottom: 15,
+    textAlign: 'center',
+    fontStyle: 'italic'
+  },
+  inputBox: {
+    height: 30,
+    borderColor: 'black',
+    borderBottomWidth: 1,
+    width: '30%',
+    textAlign: 'center'
+  },
     container: {
       flex: 1,
       marginTop: Constants.statusBarHeight,
@@ -178,11 +204,16 @@ const styles = StyleSheet.create({
       width: "100%",
       backgroundColor:"#000"
     },
+    price: {
+      color: 'blue',
+      fontSize: 20,
+      textAlign: 'center'
+    },
     item: {
       backgroundColor: '#DCEDC8',
-      padding: 5,
-      marginVertical: 10,
-      marginHorizontal: 10,
+      padding: 15,
+      marginVertical: 20,
+      marginHorizontal: 10
     }
   });
 

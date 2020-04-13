@@ -1,9 +1,16 @@
 import React, { Component } from 'react';
-import { TextInput, SafeAreaView, StyleSheet, Text, View, Button, Image } from 'react-native';
 import * as itemsActions from '../items/items.actions';
 import SelectMultiple from 'react-native-select-multiple'
+import {itemsStore} from '../items/items.store';
+import PropTypes from 'prop-types';
+import Constants from 'expo-constants';
 
-const allItems = ['Item 1', 'Item 2', 'Item 3']
+//UI Elements
+import { TextInput, SafeAreaView, StyleSheet, View, Image } from 'react-native';
+import { Button, Text } from 'react-native-elements';
+import Icon from 'react-native-vector-icons/FontAwesome';
+
+const allItems = ['temp 1', 'temp 2']
 
 export default class Step2AddPerson extends React.Component {
 
@@ -11,13 +18,36 @@ export default class Step2AddPerson extends React.Component {
     super(props)
     this.state = {
       person: null,
-      selectedItems: []
+      selectedItems: [],
+      itemsFromCloud: []
     };
   }
 
-  // componentDidMount(){
+  static propTypes = {
+    componentId: PropTypes.string,
+    items: PropTypes.array
+  };
 
-  // }
+  convertToItemNames(listOfItems) {
+    // console.log(listOfItems);
+    temp = [];
+    listOfItems.map( (eachItem) => {
+      // console.log(eachItem.itemName);
+      temp.push(eachItem.itemName);
+    });
+    // temp.pop();
+    this.setState({itemsFromCloud: temp});
+    // console.log(temp);
+  }
+
+  componentDidMount(){
+    itemStoreFromCloud = itemsStore.getItems(); 
+    // console.log(itemStoreFromCloud);
+    this.convertToItemNames(itemStoreFromCloud);
+    // itemsStore.getItems();
+    // this.convertToItemNames(this.props.items);
+    // this.setState({ itemsFromCloud : itemsStore.getItems()});
+  }
 
   onSelectionsChange = (selectedItems) => {
     // selectedFruits is array of { label, value }
@@ -34,19 +64,26 @@ export default class Step2AddPerson extends React.Component {
     const { navigation } = this.props;
     return (
       <View style={styles.centeralign}>
-        <Text style={styles.heading}>Step 2: Add Persons to the Bill</Text>
-
+        <Text>{'\n'}</Text>
+        <Text style={styles.heading}>Step 2 : </Text>
+        <Text style={styles.subheading}>Add People!</Text>  
+        <Text>{'\n'}</Text> 
+        
         <TextInput
           style={styles.inputBox}
           onChangeText={person => this.setState({ person })}
           placeholder="Enter Person's Name" />
+      
+      <Text>{'\n'}</Text> 
 
         <SafeAreaView style={styles.centeralign} > 
           <SelectMultiple
-            items={allItems}
+            items={this.state.itemsFromCloud}
             selectedItems={this.state.selectedItems}
             onSelectionsChange={this.onSelectionsChange} />
         </SafeAreaView>
+
+      <Text>{'\n'}</Text> 
 
         <Button
           title='Assign Items to this Person!'
@@ -61,29 +98,49 @@ export default class Step2AddPerson extends React.Component {
           }
         />
 
+      <Text>{'\n \n \n \n'}</Text>              
+
       </View>
     )
   };
 
 }
-//navigation.getParam('name','default value')
+
 const styles = StyleSheet.create({
-  centeralign: {
-    flex: 1,
+    centeralign: {
+    flex: 20,
     backgroundColor: '#fff',
     alignItems: 'center',
     justifyContent: 'center',
+    marginHorizontal: 25
   },
   heading: {
     color: 'red',
     fontWeight: 'bold',
     fontSize: 30,
+    marginBottom: 30,
     textAlign: 'center'
+  },
+  subheading: {
+      color: 'black',
+      fontSize: 22,
+      textAlign: 'center'
+  },
+  button:{
+    marginBottom: 50
   },
   text: {
     color: 'black',
     fontSize: 15,
-    textAlign: 'center'
+    marginBottom: 15,
+    textAlign: 'center',
+  },
+  text2: {
+    color: 'black',
+    fontSize: 15,
+    marginBottom: 15,
+    textAlign: 'center',
+    fontStyle: 'italic'
   },
   inputBox: {
     height: 30,
@@ -91,12 +148,33 @@ const styles = StyleSheet.create({
     borderBottomWidth: 1,
     width: '30%',
     textAlign: 'center'
-  }
-});
-
-//   onPress={() => this.props.navigation.navigate('AddBill',{
-//     total: 10,
-//     name: 'ibrahim',
-//   }
-// )}
-// 
+  },
+    container: {
+      flex: 1,
+      marginTop: Constants.statusBarHeight,
+      alignItems: 'center',
+      justifyContent: 'center'
+    },
+    containerPeople: {
+      flex: 1,
+      marginTop: Constants.statusBarHeight,
+      alignItems: 'center',
+      justifyContent: 'center'
+    },
+    line: {
+      height: 0.5,
+      width: "100%",
+      backgroundColor:"#000"
+    },
+    price: {
+      color: 'blue',
+      fontSize: 20,
+      textAlign: 'center'
+    },
+    item: {
+      backgroundColor: '#DCEDC8',
+      padding: 15,
+      marginVertical: 20,
+      marginHorizontal: 10
+    }
+  });

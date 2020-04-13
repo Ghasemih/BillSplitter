@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { TextInput, StyleSheet, Text, View, Button, Image } from 'react-native';
 import { createAppContainer } from 'react-navigation';
 import { createStackNavigator } from 'react-navigation-stack';
 import BillScreen from './screens/BillScreen';
@@ -14,6 +13,12 @@ import BillOptionsScreen from './screens/BillOptionsScreen';
 import SimpleDivideScreen from './screens/SimpleDivideScreen';
 import Step1AddItem from './screens/Step1AddItem';
 import Step2AddPerson from './screens/Step2AddPerson';
+
+//UI Elements
+import { TextInput, StyleSheet, View, Image } from 'react-native';
+import { Button, Text } from 'react-native-elements';
+import Icon from 'react-native-vector-icons/FontAwesome';
+
 
 class HomeScreen extends React.Component {
   constructor(props) {
@@ -33,11 +38,14 @@ class HomeScreen extends React.Component {
     return (
       <View style={styles.centeralign}>
         <Text style={styles.heading} > BillSplitter </Text>
-        <Text style={styles.text} > Choose an option to get started!</Text>
-        
+        <Text style={styles.text2} > Get started on dividing that complicated restaurant bill!</Text>
+        <Text style={styles.text} > Choose an option below:</Text>
+        <Text>{'\n'}</Text>
+
+
         <View style={styles.button}>
           <Button 
-            title="Add a Bill"
+            title=" Add a Bill  " 
             //helps in navigation to different screens
             onPress={() => this.props.navigation.navigate('BillOptions',
               {
@@ -48,7 +56,7 @@ class HomeScreen extends React.Component {
           />
           <Text>{'\n'}</Text>
           <Button 
-            title="View Previous Bills"
+            title="  View Previous Bills    "
             //helps in navigation to different screens
             onPress={() => this.props.navigation.navigate('AddBill',
               {
@@ -58,8 +66,8 @@ class HomeScreen extends React.Component {
             )}
           />
           <Text>{'\n'}</Text>
-          <Button 
-            title="About"
+          <Button  
+            title="  About   "
             //helps in navigation to different screens
             onPress={() => this.props.navigation.navigate('AboutScreen',
               {
@@ -106,10 +114,11 @@ export default class App extends React.Component {
 
 const styles = StyleSheet.create({
   centeralign: {
-    flex: 1,
+    flex: 20,
     backgroundColor: '#fff',
     alignItems: 'center',
     justifyContent: 'center',
+    marginHorizontal: 25
   },
   heading: {
     color: 'red',
@@ -119,13 +128,20 @@ const styles = StyleSheet.create({
     textAlign: 'center'
   },
   button:{
-    marginBottom: 100,
+    marginBottom: 50
   },
   text: {
     color: 'black',
-    fontSize: 20,
-    marginBottom: 100,
-    textAlign: 'center'
+    fontSize: 15,
+    marginBottom: 15,
+    textAlign: 'center',
+  },
+  text2: {
+    color: 'black',
+    fontSize: 15,
+    marginBottom: 15,
+    textAlign: 'center',
+    fontStyle: 'italic'
   },
   inputBox: {
     height: 30,
@@ -144,26 +160,3 @@ const styles = StyleSheet.create({
     backgroundColor: '#CDDC39'
   }
 });
-
-
-// /**
-//  * @param {string} imgPath - The path of the image.
-//  * @param {string} lang - The language you want to process.
-//  * @param {object} tessOptions - Tesseract options.
-//  */
-//  const lang = LANG_ENGLISH
-//  
-//  const tessOptions = {
-//   whitelist: null, 
-//   blacklist: '1234567890\'!"#$%&/()={}[]+*-_:;<>'
-// };
-//  const imgPath = require("../../assets/list.png");
-// RNTesseractOcr.recognize(imgPath, lang, tessOptions)
-//   .then((result) => {
-//     this.setState({ ocrResult: result });
-//     console.log("OCR Result: ", result);
-//   })
-//   .catch((err) => {
-//     console.log("OCR Error: ", err);
-//   })
-//   .done();
