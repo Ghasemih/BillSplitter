@@ -30,11 +30,13 @@ const items = [
 const people = [
     {
     personName: "Person A",
-    selectedItems: ["Item 1", "Item 2"]
+    selectedItems: ["Item 1", "Item 2"],
+    breakdownPrice: []
     },
     {
     personName: "Person B",
-    selectedItems: ["Item 1", "Item 2", "Item 3"]
+    selectedItems: ["Item 1", "Item 2", "Item 3"],
+    breakdownPrice: []
     }
 ];
 

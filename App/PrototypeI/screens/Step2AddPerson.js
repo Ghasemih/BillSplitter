@@ -1,13 +1,28 @@
 import React, { Component } from 'react';
-import { TextInput, SafeAreaView, StyleSheet, Text, View, Button, Image } from 'react-native';
+import { TextInput, SafeAreaView, StyleSheet, Text, View, Button, Image, FlatList, TouchableOpacity } from 'react-native';
 import * as itemsActions from '../items/items.actions';
 import SelectMultiple from 'react-native-select-multiple'
 import {itemsStore} from '../items/items.store';
 import PropTypes from 'prop-types';
+import {connect} from 'remx';
+import Constants from 'expo-constants';
 
-const allItems = ['temp 1', 'temp 2']
+function mapStateToItems() {
+  return {
+    people: itemsStore.getPeople(),
+  }
+}
 
-export default class Step2AddPerson extends React.Component {
+function People({ person }) {
+  return (
+    <View style={styles.person}>
+      <Text style={styles.title}>{person.personName}</Text>
+      {/* <Text style={styles.price}>{person.selectedItems}</Text> */}
+    </View>
+  );
+}
+
+class Step2AddPerson extends React.Component {
 
   constructor(props) {
     super(props)
@@ -78,15 +93,36 @@ export default class Step2AddPerson extends React.Component {
             onSelectionsChange={this.onSelectionsChange} />
         </SafeAreaView>
 
+        <SafeAreaView style={styles.containerPeople}>
+          <FlatList
+            data={this.props.people}
+            renderItem={({ item }) => <People person={item} />}
+            keyExtractor={item => item.id}
+            contentContainerStyle={{ paddingBottom: 0}}
+            horizontal={true}
+          />
+          </SafeAreaView>
+
+
         <Button
-          title='Assign Items to this Person!'
+          title=" Assign Items to this Person! "
           //helps in navigation to different screens
           onPress={() => {
             itemsActions.addPerson({
               personName: this.state.person,
               selectedItems: this.state.selectedItems,
+              breakdownPrice: []
             });
-            this.props.navigation.navigate('Bill')
+            this.props.navigation.navigate('Step2AddPerson');
+          }
+          }
+        />
+
+        <Button
+          title=" Finished "
+          //helps in navigation to different screens
+          onPress={() => {
+            this.props.navigation.navigate('Bill');
           }
           }
         />
@@ -103,6 +139,12 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
     alignItems: 'center',
     justifyContent: 'center',
+  },
+  containerPeople: {
+    flex: 2,
+    marginTop: Constants.statusBarHeight,
+    alignItems: 'center',
+    justifyContent: 'center'
   },
   heading: {
     color: 'red',
@@ -121,9 +163,22 @@ const styles = StyleSheet.create({
     borderBottomWidth: 1,
     width: '30%',
     textAlign: 'center'
+  },
+  person:{
+    backgroundColor: '#E1BEE7',
+    padding: 5,
+    marginVertical: 30,
+    marginHorizontal: 5,  
+  },
+  item: {
+    backgroundColor: '#DCEDC8',
+    padding: 5,
+    marginVertical: 10,
+    marginHorizontal: 10,
   }
 });
 
+export default connect(mapStateToItems)(Step2AddPerson);
 //   onPress={() => this.props.navigation.navigate('AddBill',{
 //     total: 10,
 //     name: 'ibrahim',

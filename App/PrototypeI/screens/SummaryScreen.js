@@ -1,11 +1,10 @@
 import React, { Component } from 'react';
-import { TextInput, StyleSheet, Text, View, Button, Image } from 'react-native';
+import { TextInput, SafeAreaView, StyleSheet, Text, View, Button, Image, FlatList, TouchableOpacity} from 'react-native';
 import * as itemsActions from '../items/items.actions';
 import Constants from 'expo-constants';
 import PropTypes from 'prop-types';
 import {connect} from 'remx';
 import {itemsStore} from '../items/items.store';
-
 
 function mapStateToItems() {
   return {
@@ -14,6 +13,25 @@ function mapStateToItems() {
   }
 }
 
+function People({ person }) {
+  console.log(person);
+  stringBuilder = "";
+  sumValues = person.breakdownPrice.reduce((a,b) => a + b, 0)
+  for (let i=0; i < person.selectedItems.length; i++){
+    var num = person.breakdownPrice[i].toString();
+    var currItemName = person.selectedItems[i];
+    stringBuilder = stringBuilder + " " + currItemName + ": $" + num + "\n"; 
+  }
+
+  return (
+    <View style={styles.person}>
+      <Text style={styles.title}>{person.personName}</Text>
+      <Text style={styles.title}>{stringBuilder}</Text>
+      <Text style={styles.price}>{sumValues}</Text>
+      
+    </View>
+  );
+}
 
 class SummaryScreen extends React.Component {
 
@@ -39,7 +57,6 @@ class SummaryScreen extends React.Component {
     // this.setState({allItems: itemsStoreFromCloud});
     // this.setState({allPeople: this.props.people});
     this.convertPersonToItems();
-  
   }
 
   convertPersonToItems() {
@@ -56,12 +73,19 @@ class SummaryScreen extends React.Component {
       }
       itemsStoreFromCloud[i].assignedPeople = temp;
     }
-    
+
     itemsActions.setItems(itemsStoreFromCloud);
-    console.log(itemsStoreFromCloud);
+    // console.log(itemsStoreFromCloud); 
     
-    result1 = this.calculateListOfBreakdownPrice(peopleStoreFromCloud[0].selectedItems);
-    result2 = this.calculateListOfBreakdownPrice(peopleStoreFromCloud[1].selectedItems);
+    for (let i = 0; i < peopleStoreFromCloud.length; i++){
+      result = this.calculateListOfBreakdownPrice(peopleStoreFromCloud[i].selectedItems);
+      peopleStoreFromCloud[i].breakdownPrice = result; 
+    }
+
+    itemsActions.setPeople(peopleStoreFromCloud);
+    // console.log(peopleStoreFromCloud)
+    // result1 = this.calculateListOfBreakdownPrice(peopleStoreFromCloud[0].selectedItems);
+    // result2 = this.calculateListOfBreakdownPrice(peopleStoreFromCloud[1].selectedItems);
 
   }
 
@@ -77,8 +101,8 @@ class SummaryScreen extends React.Component {
         }
       }
     }
-    console.log(selectedItems);
-    console.log(temp);
+    // console.log(selectedItems);
+    // console.log(temp);
     return temp;
   }
 
@@ -103,6 +127,17 @@ class SummaryScreen extends React.Component {
     return (
       <View style={styles.centeralign}>
         <Text style={styles.heading}>SummaryScreen</Text>
+
+        <SafeAreaView style={styles.containerPeople}>
+          <FlatList
+            data={this.props.people}
+            renderItem={({ item }) => <People person={item} />}
+            keyExtractor={item => item.id}
+            contentContainerStyle={{ paddingBottom: 0}}
+          />
+          </SafeAreaView>
+
+
         <Button
           title='Go to BillScreen Page'
           //helps in navigation to different screens
@@ -122,6 +157,12 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
+  containerPeople: {
+    flex: 1,
+    marginTop: Constants.statusBarHeight,
+    alignItems: 'center',
+    justifyContent: 'center'
+  },
   heading: {
     color: 'red',
     fontWeight: 'bold',
@@ -139,7 +180,24 @@ const styles = StyleSheet.create({
     borderBottomWidth: 1,
     width: '30%',
     textAlign: 'center'
-  }
+  },
+  item: {
+    backgroundColor: '#DCEDC8',
+    padding: 5,
+    marginVertical: 10,
+    marginHorizontal: 10,
+  },
+  person:{
+    backgroundColor: '#E1BEE7',
+    padding: 5,
+    marginVertical: 30,
+    marginHorizontal: 5,  
+  },
+  price: {
+    color: 'blue',
+    fontSize: 20,
+    textAlign: 'right'
+  },
 });
 
 export default connect(mapStateToItems)(SummaryScreen);
