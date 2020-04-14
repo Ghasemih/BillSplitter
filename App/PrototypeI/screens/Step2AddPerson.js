@@ -46,8 +46,13 @@ export default class Step2AddPerson extends React.Component {
 
   onSelectionsChange = (selectedItems) => {
     // selectedFruits is array of { label, value }
+    temp = [];
+    for (let i = 0; i < selectedItems.length ; i++){
+      temp.push(selectedItems[i].value);
+    }
+    selectedItems = temp;
     this.setState({ selectedItems });
-    console.log(this.state.selectedItems);
+    // console.log(this.state.selectedItems);
 
   }
 

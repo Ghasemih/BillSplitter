@@ -43,9 +43,9 @@ class Step1AddItem extends React.Component {
     };
     
     componentDidMount(){
-      itemsActions.fetchItems();
-      itemsActions.fetchPerson();
-      this.setState({renderItems : this.props.items})
+      // itemsActions.fetchItems();
+      // itemsActions.fetchPerson();
+      // this.setState({renderItems : this.props.items})
     };
 
     // FlatListItemSeperator = () => {
