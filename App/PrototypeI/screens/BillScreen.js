@@ -12,51 +12,50 @@ import { TextInput, StyleSheet, View, Image,SafeAreaView, FlatList, TouchableOpa
 import { Button, Text } from 'react-native-elements';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
-
 const people = [
   {
-  personName: "An Example of a Person!",
+  personName: "Person A",
   selectedItems: []
   },
-  // {
-  // personName: "Person B",
-  // selectedItems: []
-  // }
+  {
+  personName: "Person B",
+  selectedItems: []
+  }
 ];
 
 const items = [
   {
   id:1,
-  itemName: "An Example of an Item!",
+  itemName: "Item 1",
   price: 10,
   assignedPeople: ["Person A"],
   taxValue: 13,
   tipValue: 10
   },
-  // {
-  // id:2,
-  // itemName: "Item 2",
-  // price: 20,
-  // assignedPeople: ["Person A", "Person B"],
-  // taxValue: 13,
-  // tipValue: 10
-  // },
-  // {
-  //   id:3,
-  //   itemName: "Item 4",
-  //   price: 20,
-  //   assignedPeople: ["Person A", "Person B"],
-  //   taxValue: 13,
-  //   tipValue: 10
-  //   },
-  // {
-  // id:4,
-  // itemName: "Item 3",
-  // price: 30,
-  // assignedPeople: ["Person B"],
-  // taxValue: 13,
-  // tipValue: 10
-  // }
+  {
+  id:2,
+  itemName: "Item 2",
+  price: 20,
+  assignedPeople: ["Person A", "Person B"],
+  taxValue: 13,
+  tipValue: 10
+  },
+  {
+    id:3,
+    itemName: "Item 4",
+    price: 20,
+    assignedPeople: ["Person A", "Person B"],
+    taxValue: 13,
+    tipValue: 10
+    },
+  {
+  id:4,
+  itemName: "Item 3",
+  price: 30,
+  assignedPeople: ["Person B"],
+  taxValue: 13,
+  tipValue: 10
+  }
 ];
 
 function Item({ item }) {
@@ -87,7 +86,7 @@ function People({ person }) {
     // </ListItem>
 
 function mapStateToItems() {
-  console.log(itemsStore.getPeople());
+  // console.log(itemsStore.getPeople());
   return {
     items: itemsStore.getItems(),
     people: itemsStore.getPeople(),
@@ -109,10 +108,69 @@ class BillScreen extends React.Component {
     };
     
     componentDidMount(){
-      itemsActions.fetchItems();
-      itemsActions.fetchPerson();
-      this.setState({renderItems : this.props.items})
+      // itemsActions.fetchItems();
+      // itemsActions.fetchPerson();
+      // this.setState({renderItems : this.props.items})
     };
+
+    componentDidUpdate(){
+      this.convertPersonToItems();
+    }
+
+    convertPersonToItems() {
+      itemsStoreFromCloud = itemsStore.getItems();
+      peopleStoreFromCloud = itemsStore.getPeople();
+      for (let i = 0; i < itemsStoreFromCloud.length; i++) {
+        temp = [];
+        currItemName = itemsStoreFromCloud[i].itemName;
+        for (let j = 0; j < peopleStoreFromCloud.length; j++){
+          if ( peopleStoreFromCloud[j].selectedItems.includes( currItemName )  ) {
+            temp.push(peopleStoreFromCloud[j].personName);
+          }
+  
+        }
+        itemsStoreFromCloud[i].assignedPeople = temp;
+      }
+  
+      itemsActions.setItems(itemsStoreFromCloud);
+      // console.log(itemsStoreFromCloud); 
+      
+      for (let i = 0; i < peopleStoreFromCloud.length; i++){
+        result = this.calculateListOfBreakdownPrice(peopleStoreFromCloud[i].selectedItems);
+        peopleStoreFromCloud[i].breakdownPrice = result; 
+      }
+  
+      itemsActions.setPeople(peopleStoreFromCloud);
+      // console.log(peopleStoreFromCloud)
+      // result1 = this.calculateListOfBreakdownPrice(peopleStoreFromCloud[0].selectedItems);
+      // result2 = this.calculateListOfBreakdownPrice(peopleStoreFromCloud[1].selectedItems);
+  
+    }
+  
+    calculateListOfBreakdownPrice(selectedItems){
+      itemsStoreFromCloud = itemsStore.getItems();
+      temp = [];
+      for (let i=0; i< selectedItems.length; i++){
+        for (let j=0; j < itemsStoreFromCloud.length; j++){
+          currItem = itemsStoreFromCloud[j];
+          if ( selectedItems[i] === (currItem.itemName) ) {
+            value = this.caculateBreakdownPrice(currItem);
+            temp.push(value);
+          }
+        }
+      }
+      // console.log(selectedItems);
+      // console.log(temp);
+      return temp;
+    }
+  
+    caculateBreakdownPrice(item){
+      calculatedPrice = 0.0;
+      calculatedPrice = item.price / (item.assignedPeople.length);
+      calculatedPrice = +(Math.round(calculatedPrice + "e+2")  + "e-2");
+      return calculatedPrice;
+    }
+
 
     static navigationOptions = {
         title: 'Bill Screen\t',
@@ -124,6 +182,7 @@ class BillScreen extends React.Component {
       <View style={styles.line}></View>
       )
     };
+
 
     render() {
         const {navigation} = this.props;
@@ -145,9 +204,6 @@ class BillScreen extends React.Component {
           </SafeAreaView>
           
 
-          <View style = {styles.line} />
-
-
           <SafeAreaView style={styles.containerPeople}>
           <FlatList
             data={this.props.people}
@@ -156,10 +212,7 @@ class BillScreen extends React.Component {
             contentContainerStyle={{ paddingBottom: 0}}
             horizontal={true}
           />
-          </SafeAreaView>
-
-
-          
+          </SafeAreaView>        
 
           <Text>{'\n'}</Text>
           <Button

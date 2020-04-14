@@ -18,6 +18,11 @@ export default class SimpleDivideScreen extends React.Component {
 render() {
     return (
       <View style={styles.centeralign}>
+
+        <Text style={styles.subheading}> Simply Divide your bill into your people below! </Text>
+       
+        <Text>{'\n'}</Text>
+
         <TextInput
           style={styles.inputBox}
           onChangeText={total => this.setState({ total })}
@@ -38,7 +43,8 @@ render() {
 
         <Text>{'\n'}</Text>
 
-        <Text style={styles.heading} >{this.state.total / this.state.people} </Text>
+        <Text style={styles.heading} >{Number(this.state.total / this.state.people).toFixed(2)} </Text>
+
       </View>
     );
   }
@@ -47,15 +53,21 @@ render() {
 //navigation.getParam('name','default value')
 const styles = StyleSheet.create({
     centeralign: {
-      flex: 1,
+      flex: 20,
       backgroundColor: '#fff',
       alignItems: 'center',
       justifyContent: 'center',
+      marginHorizontal: 25
     },
     heading: {
       color: 'red',
       fontWeight: 'bold',
       fontSize: 30,
+      textAlign: 'center'
+    },
+    subheading: {
+      color: 'black',
+      fontSize: 22,
       textAlign: 'center'
     },
     inputBox: {

@@ -61,7 +61,7 @@ class Step1AddItem extends React.Component {
     // };
 
     static navigationOptions = {
-        title: "Step 1: Add All the Items",
+        title: "Step 1",
     };
 
     render() {
@@ -73,17 +73,22 @@ class Step1AddItem extends React.Component {
                 <Text style={styles.heading}>Step 1 : </Text>
                 <Text style={styles.subheading}>Add your Items!</Text>  
                 <Text>{'\n'}</Text>              
-                <TextInput
+              
+              <TextInput
               style={styles.inputBox}
               onChangeText={itemName => this.setState({itemName})}
-              placeholder="Enter Item Name" />
+              placeholder="Enter Item Name" 
+              ref={input2 => { this.textInput2 = input2 }}
+              />
                 
-                <TextInput
+              <TextInput
               style={styles.inputBox}
               onChangeText={price => this.setState({price})}
               placeholder="Enter Item Price" 
-              keyboardType="number-pad"  
-              returnKeyType='done'   />    
+              keyboardType="numeric"  
+              returnKeyType='done'   
+              ref={input => { this.textInput = input }}
+              />    
                 
                 <Text>{'\n'}</Text>   
 
@@ -101,8 +106,9 @@ class Step1AddItem extends React.Component {
                     taxValue: 13,
                     tipValue: 10
                   });
+                 this.textInput.clear(); this.textInput2.clear();
                  this.props.navigation.navigate('Step1AddItem');
-                  }
+                }
                 }
                 />
           
@@ -115,13 +121,6 @@ class Step1AddItem extends React.Component {
                 "
                 //helps in navigation to different screens
                 onPress={() => {
-                  itemsActions.addItem({
-                    itemName: this.state.itemName,
-                    price: this.state.price,
-                    assignedPeople: [],
-                    taxValue: 13,
-                    tipValue: 10
-                  });
                  this.props.navigation.navigate('Step2AddPerson');
                   }
                 }

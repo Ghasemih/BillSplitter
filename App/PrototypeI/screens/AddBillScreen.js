@@ -2,27 +2,50 @@ import React, { Component } from 'react';
 import * as ImagePicker from 'expo-image-picker';
 import Constants from 'expo-constants';
 import * as Permissions from 'expo-permissions';
-
+import PropTypes from 'prop-types';
+import { connect } from 'remx';
+import { itemsStore } from '../items/items.store';
+import * as itemsActions from '../items/items.actions';
 //UI Elements
 import { TextInput, SafeAreaView, StyleSheet, View, Image } from 'react-native';
 import { Button, Text } from 'react-native-elements';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
 
-export default class AddBillScreen extends React.Component {
 
-    state = {
-      image: null,
-    };
-  
+function mapStateToItems() {
+  // console.log(itemsStore.getPeople());
+  return {
+    items: itemsStore.getItems(),
+    people: itemsStore.getPeople(),
+  }
+
+}
+
+
+class AddBillScreen extends React.Component {
+
+  state = {
+    image: null,
+    renderItems: [],
+  };
+
+  static propTypes = {
+    componentId: PropTypes.string,
+    items: PropTypes.array,
+    people: PropTypes.array
+  };
+
     static navigationOptions = {
       title: "Add a new Bill",
     };
   
-    //Asks for permissions
-    componentDidMount() {
-      this.getPermissionAsync();
-    }
+  //Asks for permissions
+  componentDidMount() {
+    itemsActions.fetchItems();
+    itemsActions.fetchPerson();
+    this.getPermissionAsync();
+  }
   
     //Need permission to access camera roll for ios & android
     getPermissionAsync = async () => {
@@ -106,6 +129,15 @@ export default class AddBillScreen extends React.Component {
             //helps in navigation to different screens
             onPress={() => this.props.navigation.navigate('BillOptions')}
           />
+
+          <Text>{'\n'}</Text> 
+
+          <Button
+          title=" Analyze Image "
+          //helps in navigation to different screens
+          onPress={() => this.props.navigation.navigate('Bill')}
+        />
+
         </View>
 
       );
@@ -192,6 +224,6 @@ const styles = StyleSheet.create({
       alignItems: 'center',
       backgroundColor: 'blue'
     }
-
-
   });
+
+  export default connect(mapStateToItems)(AddBillScreen);
