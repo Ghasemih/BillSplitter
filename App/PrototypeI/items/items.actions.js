@@ -34,7 +34,7 @@ const people = [
     },
     {
     personName: "Person B",
-    selectedItems: ["Item 2", "Item 3"]
+    selectedItems: ["Item 1", "Item 2", "Item 3"]
     }
 ];
 
@@ -51,6 +51,10 @@ export function getItems(){
     itemsStore.getItems();
 }
 
+export function setItems(givenItems){
+    itemsStore.setItems(givenItems);
+}
+
 export function fetchPerson(){
     itemsStore.setPeople(people);
 } 
@@ -63,4 +67,7 @@ export function getPeople(){
     itemsStore.getPeople();
 }
 
+export function setPeople(givenPeople){
+    itemsStore.setPeople(givenPeople);
+}
 

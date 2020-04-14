@@ -25,9 +25,6 @@ class SummaryScreen extends React.Component {
     };
   }
 
-  // state = {
-  // }
-
   static propTypes = {
     componentId: PropTypes.string,
     items: PropTypes.array,
@@ -35,18 +32,60 @@ class SummaryScreen extends React.Component {
   };
 
   componentDidMount(){
-    itemsStoreFromCloud = itemsStore.getItems();
-    peopleStoreFromCloud = itemsStore.getPeople();
-    console.log(itemsStoreFromCloud);
-    console.log(peopleStoreFromCloud);
-    this.setState({allItems: itemsStoreFromCloud});
-    this.setState({allPeople: this.props.people});
+    // itemsStoreFromCloud = itemsStore.getItems();
+    // peopleStoreFromCloud = itemsStore.getPeople();
+    // console.log(itemsStoreFromCloud);
+    // console.log(peopleStoreFromCloud);
+    // this.setState({allItems: itemsStoreFromCloud});
+    // this.setState({allPeople: this.props.people});
     this.convertPersonToItems();
+  
   }
 
   convertPersonToItems() {
-    console.log(this.state.allItems);
-    console.log(this.state.allPeople);
+    itemsStoreFromCloud = itemsStore.getItems();
+    peopleStoreFromCloud = itemsStore.getPeople();
+    for (let i = 0; i < itemsStoreFromCloud.length; i++) {
+      temp = [];
+      currItemName = itemsStoreFromCloud[i].itemName;
+      for (let j = 0; j < peopleStoreFromCloud.length; j++){
+        if ( peopleStoreFromCloud[j].selectedItems.includes( currItemName )  ) {
+          temp.push(peopleStoreFromCloud[j].personName);
+        }
+
+      }
+      itemsStoreFromCloud[i].assignedPeople = temp;
+    }
+    
+    itemsActions.setItems(itemsStoreFromCloud);
+    console.log(itemsStoreFromCloud);
+    
+    result1 = this.calculateListOfBreakdownPrice(peopleStoreFromCloud[0].selectedItems);
+    result2 = this.calculateListOfBreakdownPrice(peopleStoreFromCloud[1].selectedItems);
+
+  }
+
+  calculateListOfBreakdownPrice(selectedItems){
+    itemsStoreFromCloud = itemsStore.getItems();
+    temp = [];
+    for (let i=0; i< selectedItems.length; i++){
+      for (let j=0; j < itemsStoreFromCloud.length; j++){
+        currItem = itemsStoreFromCloud[j];
+        if ( selectedItems[i] === (currItem.itemName) ) {
+          value = this.caculateBreakdownPrice(currItem);
+          temp.push(value);
+        }
+      }
+    }
+    console.log(selectedItems);
+    console.log(temp);
+    return temp;
+  }
+
+  caculateBreakdownPrice(item){
+    calculatedPrice = 0.0;
+    calculatedPrice = item.price / (item.assignedPeople.length);
+    return calculatedPrice;
   }
 
   static navigationOptions = {
