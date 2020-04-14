@@ -113,7 +113,7 @@ class SummaryScreen extends React.Component {
   }
 
   static navigationOptions = {
-    title: 'SummaryScreen\t',
+    title: " SummaryScreen ",
   };
 
   static propTypes = {
@@ -126,7 +126,7 @@ class SummaryScreen extends React.Component {
     const { navigation } = this.props;
     return (
       <View style={styles.centeralign}>
-        <Text style={styles.heading}>SummaryScreen</Text>
+        <Text style={styles.heading}>SummaryScreen\t</Text>
 
         <SafeAreaView style={styles.containerPeople}>
           <FlatList

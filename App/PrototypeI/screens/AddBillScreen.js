@@ -37,7 +37,7 @@ class AddBillScreen extends React.Component {
   //Asks for permissions
   componentDidMount() {
     itemsActions.fetchItems();
-    itemsActions.fetchPerson();
+    // itemsActions.fetchPerson();
     this.getPermissionAsync();
   }
 
